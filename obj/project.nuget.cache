@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "aNhML0kpuQI=",
+  "success": true,
+  "projectFilePath": "D:\\Programmation\\Module2\\Dark Requiem\\Dark Requiem.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jdebr\\.nuget\\packages\\raylib-cs\\7.0.1\\raylib-cs.7.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
