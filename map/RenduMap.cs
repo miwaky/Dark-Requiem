@@ -9,17 +9,15 @@ namespace DarkRequiem.map
 {
     public class RenduMap
     {
-        private Map _map;
-        private Texture2D CreatureTexture;
+        public MapInfo _map;
 
         private Dictionary<int, List<Rectangle>> _rectanglesTilesets; // int=firstgid => Liste de rectangles
         private Dictionary<int, Texture2D> _texturesTilesets; // int=firstgid => La texture du tileset dont le firstgid est passé en clé
         private Dictionary<int, Tileset> _tuileTileset; // int=id de la tuile => Le tileset dont est extrait la tuile
 
-        public RenduMap(Map map, string assetsPath)
+        public RenduMap(MapInfo map, string assetsPath)
         {
             _map = map;
-            CreatureTexture = LoadTexture("assets/images/characters/Creatures.png");
             _rectanglesTilesets = new Dictionary<int, List<Rectangle>>();
             _texturesTilesets = new Dictionary<int, Texture2D>();
             _tuileTileset = new Dictionary<int, Tileset>();
@@ -69,6 +67,7 @@ namespace DarkRequiem.map
 
         public void AfficherMap()
         {
+
             int tailleTuile = _map.TailleTuile;
 
             for (int y = 0; y < _map.Hauteur; y++)
@@ -89,13 +88,28 @@ namespace DarkRequiem.map
                         {
                             continue;
                         }
-                        Tileset tileset = _tuileTileset[idTuile];
-                        int firstgid = tileset.firstgid;
-                        Texture2D texture = _texturesTilesets[firstgid];
-                        int idReel = idTuile - firstgid;
-                        Rectangle rect = _rectanglesTilesets[firstgid][idReel];
-                        Vector2 position = new Vector2(x * tailleTuile, y * tailleTuile);
-                        Raylib.DrawTextureRec(texture, rect, position, Color.White);
+                        if (_tuileTileset.ContainsKey(idTuile))
+                        {
+                            Tileset tileset = _tuileTileset[idTuile];
+                            int firstgid = tileset.firstgid;
+                            Texture2D texture = _texturesTilesets[firstgid];
+                            int idReel = idTuile - firstgid;
+
+                            if (idReel >= 0 && idReel < _rectanglesTilesets[firstgid].Count)
+                            {
+                                Rectangle rect = _rectanglesTilesets[firstgid][idReel];
+                                Vector2 position = new Vector2(x * tailleTuile, y * tailleTuile);
+                                Raylib.DrawTextureRec(texture, rect, position, Color.White);
+                            }
+                            else
+                            {
+                                Console.WriteLine($"[AVERTISSEMENT] ID Reel {idReel} hors limite pour tileset {tileset.image}");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"[AVERTISSEMENT] Tuile inconnue : ID {idTuile}, position ({x},{y}) dans layer {layer.name}");
+                        }
                     }
                 }
             }
@@ -109,16 +123,34 @@ namespace DarkRequiem.map
             }
         }
 
-        public void DrawMonsters()
+        public void DrawNpc()
         {
             foreach (Npc npc in GameManager.ActiveNpcs)
             {
                 Rectangle sourceRect = npc.GetSpriteRectangle();
-                // Console.WriteLine($" Dessin de {npc.Name} avec SpriteID {npc.SpriteID} -> Source Rect {sourceRect}");
+                float scale = 1.2f;
 
-                Vector2 position = new Vector2(npc.Colonne * _map.TailleTuile, npc.Ligne * _map.TailleTuile);
-                DrawTextureRec(CreatureTexture, sourceRect, position, Color.White);
+                float finalWidth = sourceRect.Width * scale;
+                float finalHeight = sourceRect.Height * scale;
+
+                // position centrée sur la tuile clairement
+                Vector2 position = new Vector2(
+                    npc.Colonne * _map.TailleTuile + (_map.TailleTuile / 2),
+                    npc.Ligne * _map.TailleTuile + (_map.TailleTuile / 2)
+                );
+
+                Texture2D texture = NpcTextures.GetTexture(npc.TextureType);
+
+                DrawTexturePro(
+                    texture,
+                    sourceRect,
+                    new Rectangle(position.X, position.Y, finalWidth, finalHeight),
+                    new Vector2(finalWidth / 2, finalHeight / 2), // origine au centre du sprite
+                    0f,
+                    Color.White
+                );
             }
         }
+
     }
 }

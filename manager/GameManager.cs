@@ -4,6 +4,7 @@ using DarkRequiem.interact;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DarkRequiem.player;
 
 namespace DarkRequiem.manager
 {
@@ -20,8 +21,13 @@ namespace DarkRequiem.manager
 
         public static void LoadForCurrentMap()
         {
-            Map currentMap = SceneManager.GetCurrentMap();
-            if (currentMap == null) return;
+            MapInfo currentMap = SceneManager.GetCurrentMap();
+
+            if (currentMap == null)
+            {
+                Console.WriteLine("currentMap == null");
+                return;
+            }
 
             InitializeNewScene(); // Nettoie la liste avant de charger
             Console.WriteLine($"Chargement des NPCs et portes pour la carte : {currentMap.NomCarte}");
@@ -78,7 +84,7 @@ namespace DarkRequiem.manager
                 }
 
                 Npc baseNpc = npcDictionary[id];
-                Npc newMonster = new Npc(baseNpc.Id, baseNpc.SpriteID, baseNpc.Name, baseNpc.Type, baseNpc.HP, baseNpc.Attack, baseNpc.Defense)
+                Npc newMonster = new Npc(baseNpc.Id, baseNpc.SpriteID, baseNpc.Name, baseNpc.Type, baseNpc.MaxHp, baseNpc.Hp, baseNpc.Attack, baseNpc.Defense, baseNpc.TextureType)
                 {
                     MapName = mapName,
                     Colonne = colonne,
@@ -95,7 +101,7 @@ namespace DarkRequiem.manager
             }
         }
 
-        public static void CreateNewDoor(int idDoor, int originLigne, int originColonne, string originMap, int targetLigne, int targetColonne, string targetMap)
+        public static void CreateNewDoor(int idDoor, int originLigne, int originColonne, string originMap, int targetColonne, int targetLigne, string targetMap)
         {
             Dictionary<int, InteractDoor> doorDictionary = InteractDoor.GetDoorDictionary;
 
@@ -110,11 +116,11 @@ namespace DarkRequiem.manager
                 InteractDoor baseDoor = doorDictionary[idDoor];
                 InteractDoor newDoor = new InteractDoor(
                     baseDoor.IdDoor,
-                    baseDoor.OriginLigne,
                     baseDoor.OriginColonne,
+                    baseDoor.OriginLigne,
                     baseDoor.OriginMap,
-                    baseDoor.TargetLigne,
                     baseDoor.TargetColonne,
+                    baseDoor.TargetLigne,
                     baseDoor.TargetMap
                 );
 
@@ -128,5 +134,30 @@ namespace DarkRequiem.manager
                 Console.WriteLine($"Erreur : ID {idDoor} inconnu, impossible de créer la porte !");
             }
         }
+        public static void ExecuteNpcTurn(Player player)
+        {
+            foreach (var npc in ActiveNpcs)
+            {
+                // Vérifie si le joueur est adjacent au NPC
+                if (Math.Abs(npc.Colonne - player.colonne) + Math.Abs(npc.Ligne - player.ligne) == 1)
+                {
+                    if (npc.Type == "ennemy")
+                    {
+                        Console.WriteLine($"{npc.Name} attaque {player.Name} durant son tour !");
+                        player.TakeDamage(npc.DealDamage());
+                        Console.WriteLine($"{player.Name} a maintenant {player.Hp}/{player.MaxHp} HP.");
+
+                        if (!player.IsAlive())
+                        {
+                            Console.WriteLine("Game Over !");
+                            // Ajoute une logique claire de Game Over ici
+                        }
+                    }
+                }
+
+                //logique de mouvement pour les NPCs
+            }
+        }
+
     }
 }

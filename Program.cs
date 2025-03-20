@@ -1,115 +1,78 @@
 ﻿using Raylib_cs;
 using static Raylib_cs.Raylib;
 using System.Numerics;
-using System.Diagnostics;
 using DarkRequiem.controller;
 using DarkRequiem.manager;
 using DarkRequiem.map;
 using DarkRequiem.interact;
+using DarkRequiem.player;
+using DarkRequiem.npc;
 
 namespace DarkRequiem
 {
-
     public class DarkRequiem
     {
         public static int Main(string[] args)
         {
+            const int screenWidth = 768;
+            const int screenHeight = 528;
 
-            const int scale = 1; // Multiplicateur résolution gameboy * scale
-            const int screenWidth = 1920 * scale;
-            const int screenHeight = 1080 * scale;
-
-            InitWindow(screenWidth, screenHeight, "Projet");
+            InitWindow(screenWidth, screenHeight, "Dark Requiem");
             SetTargetFPS(60);
 
-            RenduMap renduMap = new RenduMap(new Map("/maps/map_village.json"), "assets");
-            Map map = new Map("/maps/map_village.json");
+            MapInfo map = new MapInfo("assets/maps/forest.json");
+            RenduMap renduMap = new RenduMap(map, "assets");
 
-            SceneManager.InitGame(ref renduMap, ref map, "map_village");
+            SceneManager.InitGame(ref renduMap, ref map, "forest");
 
+            CameraManager cameraManager = new CameraManager(screenWidth, screenHeight);
 
-            //Player  
-            // Crée une instance de Player et la stocke dans une variable
-            Player heros = Player.GeneratePlayer(1, 1);
-            Input playerInput = new Input(heros, map);
+            Player heros = Player.GeneratePlayer(9, 7);
+            Input playerInput = new Input(heros, map, renduMap);
 
-            int largeur = GetScreenWidth();
-            int hauteur = GetScreenHeight();
+            cameraManager.InitCameraPosition(heros.colonne, heros.ligne);
 
-            // Camera
-            // Camera
-            Camera2D camera = new Camera2D();
-            camera.Target = new Vector2(heros.colonne * map.TailleTuile, heros.ligne * map.TailleTuile);
-            camera.Offset = new Vector2(largeur / 2, hauteur / 2);
-            camera.Zoom = 4f;
-
-
+            NpcTextures.LoadAll();
 
             while (!WindowShouldClose())
             {
-                // Update ============================================
+                float deltaTime = GetFrameTime(); // correction essentielle ici
+
+                map = SceneManager.CurrentMap!;
+                renduMap = SceneManager.CurrentRenduMap!;
 
                 playerInput.Movement();
-                camera.Target = new Vector2((heros.colonne * map.TailleTuile) + map.TailleTuile / 2, (heros.ligne * map.TailleTuile) + map.TailleTuile / 2);
 
-                if (IsKeyPressed(KeyboardKey.I))
-                {
-                    Console.WriteLine("pressed I");
-                    GameManager.CreateNewMonster(2, "map_village", 3, 1);
-                    GameManager.CreateNewMonster(2, "map_village_basement", 3, 1);
-                }
-                if (IsKeyPressed(KeyboardKey.T))
-                {
-                    Console.WriteLine("pressed T");
-                    SceneManager.SwitchMapAndMovePlayer(heros, ref renduMap, ref map, ref playerInput, "map_village", 20, 14);
-                }
+                bool isMoving = Vector2.Distance(heros.PositionPixel, heros.TargetPositionPixel) > 1f;
+                heros.UpdateAnimation(deltaTime, isMoving, playerInput.CurrentDirection);
 
-                if (IsKeyPressed(KeyboardKey.E))
-                {
-                    Console.WriteLine("pressed E");
-                    SceneManager.SwitchMapAndMovePlayer(heros, ref renduMap, ref map, ref playerInput, "map_village_basement", 11, 7);
+                playerInput.Action();
 
-                }
+                cameraManager.UpdateZoneCamera(heros.colonne, heros.ligne, deltaTime);
 
-
-                // Draw ==============================================
                 BeginDrawing();
-                Raylib.ClearBackground(new Color(155, 188, 15, 255));
-                Raylib.ClearBackground(new Color(32, 33, 55, 255));
-                BeginMode2D(camera);
+                ClearBackground(new Color(32, 33, 55, 255));
+
+                BeginMode2D(cameraManager.GetCamera());
+
                 renduMap.AfficherMap();
-                renduMap.DrawMonsters();
+                renduMap.DrawNpc();
+                heros.UpdatePositionSmooth(deltaTime);
+                heros.Draw();
 
-                DrawTexture(heros.Texture, heros.colonne * map.TailleTuile, heros.ligne * map.TailleTuile, Color.White);
-                // Console.WriteLine($"Joueur position : {heros.colonne}, {heros.ligne}");
+                InteractNpc.ShowTalk();
 
-                // Appliquer un filtre couleur (overlay)
-                //Color gbFilter = new Color(139, 172, 15, 100); // Vert clair avec transparence
-                // Raylib.DrawRectangle(0, 0, 1920, 1080, gbFilter);
-                //Stop Draw
-
-                if (playerInput.collidedNpc != null)
-                {
-                    InteractNpc.InitTalk(playerInput.collidedNpc);
-
-                }
                 EndMode2D();
 
-
-                //Debug zone : 
                 playerInput.DrawDebug();
 
                 EndDrawing();
-
-
             }
-            //Stop Game
 
             renduMap.Close();
             heros.Close();
             CloseWindow();
             return 0;
         }
-
     }
 }

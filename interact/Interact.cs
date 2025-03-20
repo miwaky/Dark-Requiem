@@ -12,9 +12,11 @@ namespace DarkRequiem.interact
         public string? Dialog { get; private set; }
         public string NpcName { get; private set; }
         public string? DialogNpc { get; private set; }
-        public string? colonne { get; private set; }
-
-        public string? ligne { get; private set; }
+        public string? colonneTalkCollision { get; private set; }
+        public static string? CurrentDialog = null; //  Stocke le texte affiché
+        public static int DialogX = 0;
+        public static int DialogY = 0;
+        public string? ligneTalkCollision { get; private set; }
 
         //Variable du dictionnaire de dialogue.
         public InteractNpc(int pidDialog, string pnpcName, string pdialog)
@@ -27,8 +29,9 @@ namespace DarkRequiem.interact
         public static Dictionary<int, InteractNpc> DialogDictionary = new Dictionary<int, InteractNpc>
         {
 
-                 { 1, new InteractNpc(1, "King","Hello warrior ! Go kill the evil guy")}
-
+                 { 1, new InteractNpc(1, "King","Hello warrior ! Go kill the evil guy")},
+                 { 2, new InteractNpc(2, "Guard","Go to basement")},
+                 { 3, new InteractNpc(3, "Test", "Test")}
         };
         //Fonction pour Initialiser le dialogue quand on est en état de collision avec un Npc
         public static string? InitTalk(Npc collidedNpc)
@@ -39,28 +42,29 @@ namespace DarkRequiem.interact
 
                 if (interactNpc.NpcName == collidedNpc.Name)
                 {
-                    string DialogNpc = interactNpc.Dialog;
-                    int colonne = collidedNpc.Colonne;
-                    int ligne = collidedNpc.Ligne;
-                    ShowTalk(DialogNpc, colonne, ligne);
-                    return DialogNpc; // Retourne le dialogue pour l'affichage
+                    // 🔥 Stocke le dialogue dans CurrentDialog pour l'afficher chaque frame
+                    CurrentDialog = interactNpc.Dialog;
+                    DialogX = collidedNpc.Colonne * 16; // Convertir en pixels
+                    DialogY = (collidedNpc.Ligne - 1) * 16; // Dessiner au-dessus du PNJ
+
+                    return CurrentDialog;
                 }
             }
             return null; // Retourne null si aucun dialogue n'est trouvé
         }
         //Fonction pour appelé un message au dessus de la tête du npc. 
-        public static void ShowTalk(string DialogNpc, int colonne, int ligne)
+        public static void ShowTalk()
         {
-            if (!string.IsNullOrEmpty(DialogNpc))
+            if (!string.IsNullOrEmpty(CurrentDialog))
             {
-                int scale = 16; //  Si la taille de vos tuiles est 16x16 et scale = 4 dans DarkRequiem.cs, alors scale ici devrait être 64 (16 * 4)
                 int textHeight = 4;
-                int textWidth = MeasureText(DialogNpc, textHeight); // Calculer la largeur du texte
+                int textWidth = MeasureText(CurrentDialog, textHeight); // Calculer la largeur du texte
 
-                // Appliquer l'échelle et centrer le texte
-                DrawText(DialogNpc, colonne * scale - textWidth / 2, ligne * scale - textHeight * 2, textHeight, Color.White);
+                // 🔥 Affiche le texte à chaque frame
+                DrawText(CurrentDialog, DialogX - textWidth / 2, DialogY, textHeight, Color.White);
             }
         }
+
     }
 
     public class InteractDoor
@@ -72,7 +76,7 @@ namespace DarkRequiem.interact
         public int OriginColonne { get; private set; }
         public string OriginMap { get; private set; }
         public string TargetMap { get; private set; }
-        public InteractDoor(int pIdInteractDoor, int pOriginLigne, int pOriginColonne, string pOriginMap, int pTargetLigne, int pTargetColonne, string pTargetMap)
+        public InteractDoor(int pIdInteractDoor, int pOriginLigne, int pOriginColonne, string pOriginMap, int pTargetColonne, int pTargetLigne, string pTargetMap)
         {
             IdDoor = pIdInteractDoor;
             OriginLigne = pOriginLigne;
@@ -85,14 +89,36 @@ namespace DarkRequiem.interact
         public static Dictionary<int, InteractDoor> GetDoorDictionary = new Dictionary<int, InteractDoor>
         {
 
-                 { 1, new InteractDoor(1, 10, 5, "map_village", 8, 12, "map_village_basement")}, //Porte dans défini dans "village" qui amene au sous sol
+                 { 1, new InteractDoor(1, 39, 12, "map_village", 7, 12, "map_village_basement")}, //Porte dans défini dans "village" qui amene au sous sol
+                 { 2, new InteractDoor(2, 7, 12, "map_village_basement", 39, 12, "map_village")}, //Porte dans défini dans "village" qui amene au sous sol
+
+        
         };
+    }
 
-
-        public static void InitDoor(Player _player, Npc collision)
+    public class InteractObject
+    {
+        public int IdObject { get; private set; }
+        public int ObjectLigne { get; private set; }
+        public int ObjectColonne { get; private set; }
+        public int ObjectQuantity { get; private set; }
+        public string ObjectMap { get; private set; }
+        public InteractObject(int pIdObject, int pObjectQuantity, int pObjectLigne, int pObjectColonne, string pObjectMap)
         {
+            IdObject = pIdObject;
+            ObjectQuantity = pObjectQuantity;
+            ObjectLigne = pObjectLigne;
+            ObjectColonne = pObjectColonne;
+            ObjectMap = pObjectMap;
 
         }
+        public static Dictionary<int, InteractObject> GetObjectStaticLocationDictionary = new Dictionary<int, InteractObject>
+        {
+
+                 { 1, new InteractObject(1, 5,4, 12, "map_village")}, //Porte dans défini dans "village" qui amene au sous sol
+
+        
+        };
     }
 
 

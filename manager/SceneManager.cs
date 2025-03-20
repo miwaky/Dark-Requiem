@@ -2,67 +2,70 @@ using DarkRequiem.map;
 using System;
 using System.Collections.Generic;
 using DarkRequiem.controller;
-
+using DarkRequiem.interact;
+using DarkRequiem.player;
 
 namespace DarkRequiem.manager
 {
     public class SceneManager
     {
-        public static Dictionary<string, Map> LoadedMaps = new Dictionary<string, Map>(); //  Stocke toutes les cartes chargées
-        public static Map CurrentMap { get; private set; } = new Map("assets/maps/map_village.json");
+        public static Dictionary<string, MapInfo> LoadedMaps = new Dictionary<string, MapInfo>(); //  Stocke toutes les cartes chargées
+        public static MapInfo CurrentMap { get; private set; } = new MapInfo("assets/maps/forest.json");
+        public static RenduMap? CurrentRenduMap { get; private set; }
 
-        public bool teleportation = true;
+
 
         public static void LoadMaps()
         {
-            LoadedMaps["map_village"] = new Map("assets/maps/map_village.json");
-            LoadedMaps["map_village_basement"] = new Map("assets/maps/map_village_basement.json"); // Nom uniformisé en minuscules
-
-            Console.WriteLine(" Cartes chargées : " + string.Join(", ", LoadedMaps.Keys));
-            Console.WriteLine(" Toutes les cartes ont été chargées !");
+            LoadedMaps["forest"] = new MapInfo("assets/maps/forest.json");
+            //DEBUG
+            // Console.WriteLine(" Cartes chargées : " + string.Join(", ", LoadedMaps.Keys));
+            // Console.WriteLine(" Toutes les cartes ont été chargées !");
 
         }
         public static void SetCurrentMap(string mapName)
         {
-            if (LoadedMaps.ContainsKey(mapName.ToLower()))
-            {
-                CurrentMap = LoadedMaps[mapName.ToLower()];
-                Console.WriteLine($" Carte actuelle : {CurrentMap.NomCarte}");
-            }
-            else
-            {
-                Console.WriteLine($" Erreur : Carte '{mapName}' introuvable !");
-            }
+            CurrentMap = LoadedMaps[mapName.ToLower()];
         }
 
-        public static Map GetCurrentMap()
+        public static MapInfo GetCurrentMap()
         {
+
             return CurrentMap;
         }
 
-        public static void SwitchMapAndMovePlayer(Player player, ref RenduMap renduMap, ref Map map, ref Input input, string targetMap, int targetCol, int targetRow)
+        public static void SwitchMapAndMovePlayer(Player player, ref RenduMap renduMap, ref MapInfo map, ref Input input, string targetMap, int targetCol, int targetRow)
         {
-            if (!LoadedMaps.ContainsKey(targetMap))
-            {
-                Console.WriteLine($"Erreur : Carte '{targetMap}' introuvable !");
-                return;
-            }
+            //Debug
+            // if (!LoadedMaps.ContainsKey(targetMap.ToLower()))
+            // {
+            //     Console.WriteLine($"Erreur : Carte '{targetMap}' introuvable !");
+            //     return;
+            // }
+
             SetCurrentMap(targetMap);
             GameManager.LoadForCurrentMap();
+
             player.colonne = targetCol;
             player.ligne = targetRow;
             input.nouvelleColonne = player.colonne;
             input.nouvelleLigne = player.ligne;
-            // Met à jour la carte et l'affichage
+
             map = GetCurrentMap();
             renduMap = new RenduMap(map, "assets");
-            input.UpdateMapReference(map); //  Met à jour `_map` dans `Input.cs`
+            input.UpdateMapReference(map);
 
-            Console.WriteLine($" Changement vers {targetMap}, joueur repositionné en ({targetCol},{targetRow})");
+            CurrentMap = map;
+            CurrentRenduMap = renduMap;
         }
 
+        public static void CollidedDoorCheck(Player player, ref RenduMap renduMap, ref MapInfo map, Input input, InteractDoor door)
+        {
+            SwitchMapAndMovePlayer(player, ref renduMap, ref map, ref input, door.TargetMap.ToLower(), door.TargetColonne, door.TargetLigne);
 
-        public static void InitGame(ref RenduMap renduMap, ref Map map, string targetMap)
+        }
+
+        public static void InitGame(ref RenduMap renduMap, ref MapInfo map, string targetMap)
         {
             SceneManager.LoadMaps();
 
@@ -75,16 +78,18 @@ namespace DarkRequiem.manager
             SetCurrentMap(targetMap);
             GameManager.LoadForCurrentMap();
 
-            //  Met à jour la carte et l'affichage
             map = GetCurrentMap();
+            renduMap = new RenduMap(map, "assets");
+
+            CurrentRenduMap = renduMap;
+
             if (map == null)
             {
                 Console.WriteLine(" Erreur : `map` est null après `GetCurrentMap()` !");
                 return;
             }
-
-            renduMap = new RenduMap(map, "assets");
         }
+
 
     }
 }

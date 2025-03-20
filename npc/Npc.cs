@@ -1,4 +1,5 @@
 using Raylib_cs;
+using System.Collections.Generic;
 
 namespace DarkRequiem.npc
 {
@@ -6,44 +7,47 @@ namespace DarkRequiem.npc
     {
         public int Id { get; private set; }
 
-        // Ces données seront définies lors de la création d'un monstre dans GameManager
+        // Ces données seront définies lors de la création d'un NPC dans GameManager
         public string MapName { get; set; } = "undefined";
         public int Colonne { get; set; }
         public int Ligne { get; set; }
         public int SpriteID { get; private set; }
+        public bool HasFought { get; set; } = false;
+        public string TextureType { get; private set; }
 
-        public Npc(int id, int spriteID, string name, string type, int hp, int attack, int defense)
-       : base(name, type, hp, attack, defense)
+        public Npc(int id, int spriteID, string name, string type, int maxHP, int hp, int attack, int defense, string textureType)
+            : base(name, type, maxHP, hp, attack, defense)
         {
             Id = id;
-            SpriteID = spriteID;  //  Assigne le SpriteID correctement
+            SpriteID = spriteID;
+            TextureType = textureType;
         }
 
-        // Dictionnaire des types de NPCs
+        // Définition claire du dictionnaire NPC avec SpriteID correct
         public static Dictionary<int, Npc> GetNpcDictionary()
         {
             return new Dictionary<int, Npc>
-    {   //Id du dico (id du npc, id du sprite, nom du perso, type, vie, attaque, defense, nom de la map où il apparait, colonne, ligne)
-        { 1, new Npc(1, 37, "King", "allie", 200, 25, 10) { MapName = "map_village", Colonne = 5, Ligne = 5 } },
-        { 2, new Npc(2, 0, "Knight", "ennemy", 50, 5, 8) { MapName = "map_village", Colonne = 10, Ligne = 5 } },
-        { 3, new Npc(3, 6, "Goblin", "ennemy", 90, 15, 5) { MapName = "map_village_basement", Colonne = 5, Ligne = 5 } }
-    };
+            {
+                // Exemple : si le sprite du slime est situé en ligne 4, colonne 2 dans ta grille
+                // SpriteID = (ligne * nombre_colonnes) + colonne => (4 * 6) + 2 = 26
+                //G2 
+                {1,new Npc(1, 7, "Slime", "ennemy", 2000, 2000, 1, 1, "slime"){MapName = "forest",Colonne = 25,Ligne = 7}},
+                {2,new Npc(1, 7, "Slime", "ennemy", 2000, 2000, 1, 1, "slime"){MapName = "forest",Colonne = 22,Ligne = 7}}
+            };
         }
 
+        // Retourne le rectangle correct du sprite dans une grille de 6 colonnes
         public Rectangle GetSpriteRectangle()
         {
-            int spriteWidth = 16;  // Largeur d'un sprite
-            int spriteHeight = 16; // Hauteur d'un sprite
-            int spritesPerRow = 9; // Nombre de colonnes dans Creatures.png
 
-            int colonne = SpriteID % spritesPerRow;  //  Trouve la colonne correcte
-            int ligne = SpriteID / spritesPerRow;    //  Trouve la ligne correcte
+            int spriteWidth = 32;  // Largeur du sprite
+            int spriteHeight = 32; // Hauteur d'un sprite
+            int spritesPerRow = 6;  // Nombre de colonnes dans la spritesheet
 
-            //Console.WriteLine($" Sprite pour {Name} (SpriteID {SpriteID}) : Ligne {ligne}, Colonne {colonne}");
+            int colonne = SpriteID % spritesPerRow;  // colonne correcte
+            int ligne = SpriteID / spritesPerRow;    // ligne correcte
 
             return new Rectangle(colonne * spriteWidth, ligne * spriteHeight, spriteWidth, spriteHeight);
         }
-
-
     }
 }

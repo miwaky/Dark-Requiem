@@ -32,7 +32,7 @@ namespace DarkRequiem.map
         public List<Tileset> tilesets { get; set; } = new List<Tileset>();
     }
 
-    public class Map
+    public class MapInfo
     {
         public string NomCarte { get; set; } = "undefined";
         public int Largeur { get; private set; }
@@ -42,7 +42,7 @@ namespace DarkRequiem.map
         public List<Tileset> Tilesets { get; private set; } = new List<Tileset>();
 
         //  Ajout d'un constructeur qui charge la carte depuis un fichier JSON
-        public Map(string filePath)
+        public MapInfo(string filePath)
         {
             Load(filePath);
         }
@@ -58,7 +58,7 @@ namespace DarkRequiem.map
                     throw new InvalidOperationException($"Contenu du JSON invalide : {filePath}");
                 }
 
-                NomCarte = Path.GetFileNameWithoutExtension(filePath); // 🔥 Déduit le nom de la carte
+                NomCarte = Path.GetFileNameWithoutExtension(filePath);
                 Largeur = donneesMap.width;
                 Hauteur = donneesMap.height;
                 TailleTuile = donneesMap.tilewidth;
