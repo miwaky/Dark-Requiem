@@ -22,7 +22,11 @@ namespace DarkRequiem.manager
         }
 
         public static void InitWithMenu()
+
         {
+            AudioManager.LoadAll();
+            AudioManager.PlayMusic("menu");
+
             currentScene = new MenuScene();
         }
     }

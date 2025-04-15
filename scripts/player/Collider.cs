@@ -20,6 +20,8 @@ namespace DarkRequiem.controller
                 if (npcSurNouvelleCase.Type == "ennemy")
                 {
                     Console.WriteLine("Attack");
+                    AudioManager.Play("attack");
+
                     Battle.Attack(player, npcSurNouvelleCase);
                     player.StartAttack(input.CurrentDirection);
                 }
@@ -42,6 +44,8 @@ namespace DarkRequiem.controller
             if (breakableTile != 0)
             {
                 Console.WriteLine($"Collision avec une tuile cassable en ({nouvelleCol}, {nouvelleLig})");
+                AudioManager.Play("attack");
+
                 player.StartAttack(input.CurrentDirection);
 
                 // Détruire et loot

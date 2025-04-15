@@ -9,57 +9,61 @@ namespace DarkRequiem.scenes
     public class PauseScene : IScene
     {
         public string Name => "Pause";
-        private RenderTexture2D gameplaySnapshot;
         private IScene previousScene;
-        private Rectangle resumeButton = new Rectangle(300, 200, 200, 60);
-        private Rectangle quitButton = new Rectangle(300, 280, 200, 60);
+        private Texture2D background;
+
+        private Rectangle resumeButton = new Rectangle(32, 423, 222, 54);
+        private Rectangle quitButton = new Rectangle(281, 423, 208, 54);
+        private Rectangle settingsButton = new Rectangle(512, 423, 225, 54);
 
         public PauseScene(IScene fromScene)
         {
             previousScene = fromScene;
-            gameplaySnapshot = Raylib.LoadRenderTexture(960, 640);
-
-            // Rendu de la scène précédente dans un screenshoot
-            Raylib.BeginTextureMode(gameplaySnapshot);
-            previousScene.Draw();
-            Raylib.EndTextureMode();
+            background = LoadTexture("assets/images/background/Background_Paused.png");
         }
+
         public void Update()
         {
-            if (Raylib.IsMouseButtonPressed(MouseButton.Left))
+            if (IsMouseButtonPressed(MouseButton.Left))
             {
-                Vector2 mouse = Raylib.GetMousePosition();
-                if (Raylib.CheckCollisionPointRec(mouse, resumeButton))
+                Vector2 mouse = GetMousePosition();
+
+                if (CheckCollisionPointRec(mouse, resumeButton))
                 {
                     SceneManager.SetScene(previousScene);
                 }
-                else if (Raylib.CheckCollisionPointRec(mouse, quitButton))
+                else if (CheckCollisionPointRec(mouse, settingsButton))
                 {
-                    ExitManager.ShouldQuit = true;
+                    SceneManager.SetScene(new SettingsScene(this));
+                }
+                else if (CheckCollisionPointRec(mouse, quitButton))
+                {
+                    SceneManager.SetScene(new MenuScene());
                 }
             }
         }
 
         public void Draw()
         {
-            Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.Black);
+            BeginDrawing();
+            ClearBackground(Color.Black);
 
-            // Dessine l’image capturée du gameplay
-            DrawTextureRec(
-            gameplaySnapshot.Texture,
-            new Rectangle(0, 0, gameplaySnapshot.Texture.Width, -gameplaySnapshot.Texture.Height),
-            new Vector2(0, 0),
-            Color.White
-);
+            Rectangle source = new Rectangle(0, 0, background.Width, background.Height);
+            Rectangle dest = new Rectangle(0, 0, GetScreenWidth(), GetScreenHeight());
+            DrawTexturePro(background, source, dest, Vector2.Zero, 0f, Color.White);
 
-            Raylib.DrawRectangleRec(resumeButton, Color.DarkGreen);
-            Raylib.DrawText("Reprendre", (int)resumeButton.X + 40, (int)resumeButton.Y + 15, 20, Color.White);
+            // UI
+            DrawRectangleRec(resumeButton, new Color(50, 50, 50, 128));
 
-            Raylib.DrawRectangleRec(quitButton, Color.Red);
-            Raylib.DrawText("Quitter", (int)quitButton.X + 50, (int)quitButton.Y + 15, 20, Color.White);
+            DrawRectangleRec(settingsButton, new Color(50, 50, 50, 128));
 
-            Raylib.EndDrawing();
+            DrawRectangleRec(quitButton, new Color(50, 50, 50, 128));
+
+            Vector2 mouse = GetMousePosition();
+            string mouseText = $"Souris : {mouse.X:0}, {mouse.Y:0}";
+            DrawText(mouseText, 10, 10, 20, Color.Yellow);
+
+            EndDrawing();
         }
     }
 }

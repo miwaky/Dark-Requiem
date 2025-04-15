@@ -117,3 +117,13 @@ F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\obje
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\RA_Item_Icons01.png
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Autres\hero1.png
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Character_sword.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\music\Forest_Loop.ogg
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\sfx\Footsteps_Grass_01.wav
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\sfx\SlashObstacleForest.wav
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\sfx\Sword.wav
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\music\Menu.ogg
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_Menu.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_GameOver.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_Paused.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_Settings.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\slider.png

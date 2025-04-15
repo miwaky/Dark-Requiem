@@ -29,6 +29,7 @@ namespace DarkRequiem.scene
             map = new MapInfo("assets/maps/forest.json");
             renduMap = new RenduMap(map, "assets");
             JsonManager.InitGame(ref renduMap, ref map, "forest");
+            AudioManager.PlayMusic("forest");
 
             cameraManager = new CameraManager(screenWidth, screenHeight);
 
@@ -38,11 +39,14 @@ namespace DarkRequiem.scene
             cameraManager.InitCameraPosition(heros.colonne, heros.ligne);
 
             NpcTextures.LoadAll();
+
             Ui.TextureLoadUi();
         }
 
         public void Update()
         {
+            AudioManager.Update();
+
             if (heros.Hp <= 0)
             {
                 SceneManager.SetScene(new GameOverScene());

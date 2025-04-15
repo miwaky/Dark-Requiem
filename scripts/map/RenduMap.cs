@@ -122,7 +122,6 @@ namespace DarkRequiem.map
                 Raylib.UnloadTexture(texture);
             }
         }
-
         public void DrawNpcs(List<Npc> npcs)
         {
             int spriteSize = 48;
@@ -165,8 +164,8 @@ namespace DarkRequiem.map
                     Color.White
                 );
 
-                // Optional: affiche l'ID pour debug
-                DrawText(npc.SpriteID.ToString(), (int)destRect.X, (int)destRect.Y, 10, Color.White);
+                // affiche l'ID pour debug
+                // DrawText(npc.SpriteID.ToString(), (int)destRect.X, (int)destRect.Y, 10, Color.White);
             }
         }
 
@@ -189,7 +188,5 @@ namespace DarkRequiem.map
                 DrawTexturePro(texture, sourceRect, destRect, Vector2.Zero, 0f, Color.White);
             }
         }
-
-
     }
 }

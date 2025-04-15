@@ -1,4 +1,5 @@
 using Raylib_cs;
+using System;
 using System.Numerics;
 using DarkRequiem.scene;
 using DarkRequiem.manager;
@@ -9,9 +10,14 @@ namespace DarkRequiem.scenes
     {
         public string Name => "GameOver";
 
-        private Rectangle retryButton = new Rectangle(300, 220, 200, 50);
-        private Rectangle menuButton = new Rectangle(300, 290, 200, 50);
-        private Rectangle quitButton = new Rectangle(300, 360, 200, 50);
+        private Rectangle retryButton = new Rectangle(112, 425, 249, 55);
+        private Rectangle menuButton = new Rectangle(404, 425, 250, 55);
+        public Texture2D background;
+
+        public GameOverScene()
+        {
+            background = Raylib.LoadTexture("assets/images/background/Background_GameOver.png");
+        }
 
         public void Update()
         {
@@ -26,10 +32,7 @@ namespace DarkRequiem.scenes
                 {
                     SceneManager.SetScene(new MenuScene());
                 }
-                else if (Raylib.CheckCollisionPointRec(mouse, quitButton))
-                {
-                    ExitManager.ShouldQuit = true;
-                }
+
             }
         }
 
@@ -38,16 +41,15 @@ namespace DarkRequiem.scenes
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.DarkBlue);
 
-            Raylib.DrawText("GAME OVER", 280, 120, 50, Color.White);
+            // Afficher le fond
+            Rectangle source = new Rectangle(0, 0, background.Width, background.Height);
+            Rectangle dest = new Rectangle(0, 0, Raylib.GetScreenWidth(), Raylib.GetScreenHeight());
+            Raylib.DrawTexturePro(background, source, dest, Vector2.Zero, 0f, Color.White);
 
-            Raylib.DrawRectangleRec(retryButton, Color.Gray);
-            Raylib.DrawText("Rejouer", (int)retryButton.X + 50, (int)retryButton.Y + 15, 20, Color.White);
 
-            Raylib.DrawRectangleRec(menuButton, Color.Gray);
-            Raylib.DrawText("Menu", (int)menuButton.X + 70, (int)menuButton.Y + 15, 20, Color.White);
+            Raylib.DrawRectangleRec(retryButton, new Color(50, 50, 50, 50));
 
-            Raylib.DrawRectangleRec(quitButton, Color.Gray);
-            Raylib.DrawText("Quitter", (int)quitButton.X + 60, (int)quitButton.Y + 15, 20, Color.White);
+            Raylib.DrawRectangleRec(menuButton, new Color(50, 50, 50, 50));
 
             Raylib.EndDrawing();
         }

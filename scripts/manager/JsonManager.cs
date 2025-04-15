@@ -67,7 +67,9 @@ namespace DarkRequiem.manager
 
         public static void InitGame(ref RenduMap renduMap, ref MapInfo map, string targetMap)
         {
+
             JsonManager.LoadMaps();
+
 
             if (!LoadedMaps.ContainsKey(targetMap))
             {

@@ -1,9 +1,6 @@
 using DarkRequiem.map;
 using DarkRequiem.npc;
 using DarkRequiem.interact;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using DarkRequiem.player;
 using DarkRequiem.objects;
 
