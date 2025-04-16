@@ -14,6 +14,7 @@ namespace DarkRequiem.manager
         public static List<Objects> ActiveObjects = new();
         public static List<Npc> PendingKills = new();
         public static List<Chest> ActiveChests = new();
+        public static List<Switch> ActiveSwitches = new();
 
         public static void InitializeNewScene()
         {
@@ -22,6 +23,7 @@ namespace DarkRequiem.manager
             ActiveBreakables.Clear();
             ActiveObjects.Clear();
             ActiveChests.Clear();
+            ActiveSwitches.Clear();
 
 
         }
@@ -35,6 +37,7 @@ namespace DarkRequiem.manager
                 Console.WriteLine("currentMap == null");
                 return;
             }
+
 
             InitializeNewScene(); // Nettoie la liste avant de charger
 
@@ -78,10 +81,7 @@ namespace DarkRequiem.manager
                     );
                 }
             }
-            if (currentMap.NomCarte.ToLower() == "forest")
-            {
-                ForestEvent.InitChestEvents();
-            }
+
 
 
         }

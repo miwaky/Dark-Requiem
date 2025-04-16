@@ -30,10 +30,13 @@ namespace DarkRequiem.objects
             AudioManager.Play("open");
 
             if (Contenu is Potion potion)
-                Potion.HealPlayer(ref player, potion.heal);
+                Potion.AddPotion(ref player, 1);
             else if (Contenu is Money money)
                 Money.AddMoney(ref player, money.moneyAdded);
-
+            else if (Contenu is QuestObject questItem)
+            {
+                player.Inventory.AddQuestItem(questItem);
+            }
             IsOpened = true;
         }
 

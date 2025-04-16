@@ -2,6 +2,7 @@ using Raylib_cs;
 using static Raylib_cs.Raylib;
 using System.Numerics;
 using DarkRequiem.npc;
+using DarkRequiem.map;
 using DarkRequiem.manager;
 
 namespace DarkRequiem.player
@@ -31,18 +32,18 @@ namespace DarkRequiem.player
         public int nbrframeIdle { get; private set; } = 4;
         public int nbrframeAttack { get; private set; } = 4;
 
-        //inventaire : 
-        public int MoneyInventory { get; set; }
-        public int PotionInventory { get; set; }
+        public Inventory Inventory { get; private set; }
 
+        public int Endurance { get; set; } = 20;
+        private int turnCounter = 0;
+        public bool IsDashing { get; private set; } = false;
 
         public bool IsAttacking => State == PlayerState.Attack;
 
         public Player(string name, string type, int maxHp, int hp, int attack, int defense, int money, int nbrPotion, int startCol, int startLigne)
             : base(name, type, maxHp, hp, attack, defense)
         {
-            MoneyInventory = money;
-            PotionInventory = nbrPotion;
+            Inventory = new Inventory(money, nbrPotion);
             colonne = startCol;
             ligne = startLigne;
             TextureIdle = LoadTexture("assets/images/characters/Character_Idle.png");
@@ -75,6 +76,32 @@ namespace DarkRequiem.player
             UnloadTexture(TextureIdle);
             UnloadTexture(TextureRun);
             UnloadTexture(TextureSword);
+        }
+
+        public void UpdateTurnRecovery()
+        {
+            turnCounter++;
+            if (turnCounter >= 5)
+            {
+                turnCounter = 0;
+                if (Endurance < 10) Endurance++;
+            }
+        }
+
+        public bool CanDash()
+        {
+            return Endurance >= 3;
+        }
+
+        public void ConsumeDash()
+        {
+            Endurance -= 3;
+            IsDashing = true;
+        }
+
+        public void EndDash()
+        {
+            IsDashing = false;
         }
 
         public void UpdatePositionSmooth(float deltaTime)
@@ -111,7 +138,6 @@ namespace DarkRequiem.player
                 {
                     State = PlayerState.Idle;
 
-                    //Suppression des mobs tué durant le tour 
                     foreach (var dead in GameManager.PendingKills)
                     {
                         GameManager.RemoveNpc(dead.Id, dead.MapName, dead.Colonne, dead.Ligne);
@@ -177,12 +203,11 @@ namespace DarkRequiem.player
             );
 
             Rectangle destRect = new Rectangle(
-      PositionPixel.X - (frameWidth - 16) / 2f,
-      PositionPixel.Y - (frameHeight - 16),
-      frameWidth,
-      frameHeight
-  );
-
+                PositionPixel.X - (frameWidth - 16) / 2f,
+                PositionPixel.Y - (frameHeight - 16),
+                frameWidth,
+                frameHeight
+            );
 
             DrawTexturePro(
                 texture,

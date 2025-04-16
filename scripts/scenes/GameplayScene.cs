@@ -9,6 +9,8 @@ using DarkRequiem.player;
 using DarkRequiem.npc;
 using DarkRequiem.scenes;
 using DarkRequiem.objects;
+using DarkRequiem.events;
+
 
 namespace DarkRequiem.scene
 {
@@ -41,6 +43,11 @@ namespace DarkRequiem.scene
             Chest.Load();
             NpcTextures.LoadAll();
             Ui.TextureLoadUi();
+
+            if (map.NomCarte.ToLower() == "forest")
+            {
+                ForestEvent.InitChestEvents(heros, map);
+            }
         }
 
         public void Update()
@@ -90,7 +97,7 @@ namespace DarkRequiem.scene
 
             EndMode2D();
             Ui.UiPlayer(heros);
-            //playerInput.DrawDebug();
+            playerInput.DrawDebug();
 
             EndDrawing();
         }

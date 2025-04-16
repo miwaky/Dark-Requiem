@@ -14,7 +14,8 @@ public class Potion : Objects
     }
     public static void AddPotion(ref Player player, int amount = 1)
     {
-        player.PotionInventory += amount;
+        player.Inventory.AddPotion(amount);
+        Console.WriteLine($"Potion ajoutée ! Total : {player.Inventory.Potions}");
     }
     public static Potion GenerateHeal(int colonne, int ligne)
     {
