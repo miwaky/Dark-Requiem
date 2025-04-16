@@ -24,8 +24,6 @@ F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\ref\Dark Requiem.d
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Character_Idle.png
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Character_Run.png
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Effect_Arrow.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\FG_Crystal_Blue_1.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\FG_Treasure_1.png
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\FG_Treasure_2.png
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\FG_Treasure_Big.png
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\Rules\Rules.aseprite
@@ -127,3 +125,5 @@ F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\back
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_Paused.png
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_Settings.png
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\slider.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\chest_closed.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\chest_open.png

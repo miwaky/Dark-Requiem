@@ -69,7 +69,7 @@ namespace DarkRequiem.controller
 
                 if (objetRamassable is Potion potion)
                 {
-                    Potion.HealPlayer(ref player, potion.heal);
+                    Potion.AddPotion(ref player, 1);
                 }
                 if (objetRamassable is Money money)
                 {
@@ -77,6 +77,17 @@ namespace DarkRequiem.controller
                 }
                 GameManager.ActiveObjects.Remove(objetRamassable);
                 return true; // Le joueur peut continuer son tour
+            }
+
+            // =============== Coffre ===============
+
+            var chest = GameManager.ActiveChests.FirstOrDefault(c => c.Colonne == nouvelleCol && c.Ligne == nouvelleLig &&
+             c.MapName.ToLower() == map.NomCarte.ToLower());
+
+            if (chest != null)
+            {
+                chest.Open(player);
+                return false;
             }
             // =============== Aucune collision ===============
             return map.InfoTuilles(nouvelleCol, nouvelleLig, "Movable") == 2;

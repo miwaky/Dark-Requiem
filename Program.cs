@@ -1,5 +1,6 @@
 ﻿using Raylib_cs;
 using DarkRequiem.manager;
+using DarkRequiem.objects;
 
 Raylib.InitWindow(768, 528, "Dark Requiem");
 Raylib.SetTargetFPS(60);
@@ -13,8 +14,9 @@ while (!Raylib.WindowShouldClose())
 
     if (ExitManager.ShouldQuit)
     {
+        Chest.Unload();
         Raylib.CloseWindow();
-        break; // pour sortir du while proprement
+        break;
     }
 }
 

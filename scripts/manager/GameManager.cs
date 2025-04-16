@@ -3,7 +3,7 @@ using DarkRequiem.npc;
 using DarkRequiem.interact;
 using DarkRequiem.player;
 using DarkRequiem.objects;
-
+using DarkRequiem.events;
 namespace DarkRequiem.manager
 {
     class GameManager
@@ -13,6 +13,7 @@ namespace DarkRequiem.manager
         public static List<BreakableObject> ActiveBreakables = new();
         public static List<Objects> ActiveObjects = new();
         public static List<Npc> PendingKills = new();
+        public static List<Chest> ActiveChests = new();
 
         public static void InitializeNewScene()
         {
@@ -20,6 +21,8 @@ namespace DarkRequiem.manager
             ActiveDoors.Clear();
             ActiveBreakables.Clear();
             ActiveObjects.Clear();
+            ActiveChests.Clear();
+
 
         }
 
@@ -74,6 +77,10 @@ namespace DarkRequiem.manager
                         interactDoor.TargetMap
                     );
                 }
+            }
+            if (currentMap.NomCarte.ToLower() == "forest")
+            {
+                ForestEvent.InitChestEvents();
             }
 
 

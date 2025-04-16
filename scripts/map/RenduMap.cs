@@ -2,7 +2,6 @@ using Raylib_cs;
 using System.Numerics;
 using static Raylib_cs.Raylib;
 using DarkRequiem.npc;
-using DarkRequiem.interact;
 using DarkRequiem.objects;
 
 namespace DarkRequiem.map
@@ -188,5 +187,21 @@ namespace DarkRequiem.map
                 DrawTexturePro(texture, sourceRect, destRect, Vector2.Zero, 0f, Color.White);
             }
         }
+        public void DrawChests(List<Chest> coffres)
+        {
+            foreach (var chest in coffres)
+            {
+                Texture2D texture = chest.IsOpened ? Chest.TextureOpen : Chest.TextureClosed;
+
+                DrawTexture(
+                    texture,
+                    chest.Colonne * 16,
+                    chest.Ligne * 16,
+                    Color.White
+                );
+            }
+        }
+
+
     }
 }

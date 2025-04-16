@@ -108,6 +108,8 @@ namespace DarkRequiem.controller
         {
             if (IsKeyPressed(KeyboardKey.H))
             {
+                if (_player.PotionInventory == 0) return;
+                _player.PotionInventory--;
                 Potion.HealPlayer(ref _player, 20);
                 TriggerActionTurn();
             }

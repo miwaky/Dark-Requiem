@@ -8,6 +8,7 @@ using DarkRequiem.interact;
 using DarkRequiem.player;
 using DarkRequiem.npc;
 using DarkRequiem.scenes;
+using DarkRequiem.objects;
 
 namespace DarkRequiem.scene
 {
@@ -33,13 +34,12 @@ namespace DarkRequiem.scene
 
             cameraManager = new CameraManager(screenWidth, screenHeight);
 
-            heros = Player.GeneratePlayer(9, 7);
+            heros = Player.GeneratePlayer(37, 3);
             playerInput = new Input(heros, map, renduMap);
 
             cameraManager.InitCameraPosition(heros.colonne, heros.ligne);
-
+            Chest.Load();
             NpcTextures.LoadAll();
-
             Ui.TextureLoadUi();
         }
 
@@ -83,7 +83,7 @@ namespace DarkRequiem.scene
 
             renduMap.AfficherMap();
             renduMap.DrawObjects(GameManager.ActiveObjects);
-
+            renduMap.DrawChests(GameManager.ActiveChests);
             renduMap.DrawNpcs(GameManager.ActiveNpcs);
             heros.Draw();
             InteractNpc.ShowTalk();

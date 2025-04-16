@@ -31,14 +31,18 @@ namespace DarkRequiem.player
         public int nbrframeIdle { get; private set; } = 4;
         public int nbrframeAttack { get; private set; } = 4;
 
+        //inventaire : 
         public int MoneyInventory { get; set; }
+        public int PotionInventory { get; set; }
+
 
         public bool IsAttacking => State == PlayerState.Attack;
 
-        public Player(string name, string type, int maxHp, int hp, int attack, int defense, int money, int startCol, int startLigne)
+        public Player(string name, string type, int maxHp, int hp, int attack, int defense, int money, int nbrPotion, int startCol, int startLigne)
             : base(name, type, maxHp, hp, attack, defense)
         {
             MoneyInventory = money;
+            PotionInventory = nbrPotion;
             colonne = startCol;
             ligne = startLigne;
             TextureIdle = LoadTexture("assets/images/characters/Character_Idle.png");
@@ -55,7 +59,7 @@ namespace DarkRequiem.player
 
         public static Player GeneratePlayer(int colonne, int ligne)
         {
-            return new Player("Hero", "Player", 12, 12, 2, 0, 0, colonne, ligne);
+            return new Player("Hero", "Player", 12, 12, 2, 0, 0, 0, colonne, ligne);
         }
 
         public void StartAttack(Direction direction)

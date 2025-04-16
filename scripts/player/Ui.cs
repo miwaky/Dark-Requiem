@@ -66,11 +66,13 @@ namespace DarkRequiem.player
                     textureCoeur = HeartEmpty; // cœur vide
                 }
 
+                //Argent UI : 
                 float scale = 2.0f;
                 DrawTextureEx(textureCoeur, new Vector2(10 + x, 10), 0f, scale, Color.White);
                 x += (int)(textureCoeur.Width * scale);
 
                 DrawText("Argent : " + player.MoneyInventory, 10, 50, 20, Color.White);
+                DrawText("Potion : " + player.PotionInventory, 10, 70, 20, Color.White);
 
             }
         }

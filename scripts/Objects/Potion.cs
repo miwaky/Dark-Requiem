@@ -12,7 +12,10 @@ public class Potion : Objects
         ligne = pLigne;
         heal = pHeal;
     }
-
+    public static void AddPotion(ref Player player, int amount = 1)
+    {
+        player.PotionInventory += amount;
+    }
     public static Potion GenerateHeal(int colonne, int ligne)
     {
         return new Potion(1, "Potion", "potion", 4, 4, colonne, ligne);
