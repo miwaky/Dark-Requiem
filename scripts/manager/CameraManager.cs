@@ -7,8 +7,8 @@ namespace DarkRequiem.manager
     {
         private Camera2D camera;
 
-        private float zoneWidthPx = 16 * 16;  // x tuile * 16(size de la tuile) = 256 pixels
-        private float zoneHeightPx = 11 * 16; // x tuile * 16(size de la tuile) = 176 pixels
+        private float zoneWidthPx = 16 * 16;
+        private float zoneHeightPx = 11 * 16;
 
         private Vector2 currentZoneCenter;
         private Vector2 targetZoneCenter;
@@ -91,6 +91,24 @@ namespace DarkRequiem.manager
         public Camera2D GetCamera()
         {
             return camera;
+        }
+
+        public void ForceCenterOnPlayer(int playerCol, int playerLig)
+        {
+            Vector2 zoneCenter = CalculateZoneCenter(playerCol, playerLig);
+            currentZoneCenter = zoneCenter;
+            targetZoneCenter = zoneCenter;
+            camera.Target = zoneCenter;
+            isTransitioning = false;
+            transitionTime = 0f;
+        }
+        public void ForceCameraPosition(int playerCol, int playerLig)
+        {
+            Vector2 instantCenter = CalculateZoneCenter(playerCol, playerLig);
+            currentZoneCenter = instantCenter;
+            targetZoneCenter = instantCenter;
+            camera.Target = instantCenter;
+            isTransitioning = false;
         }
     }
 }

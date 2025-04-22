@@ -102,12 +102,12 @@ namespace DarkRequiem.map
                             }
                             else
                             {
-                                Console.WriteLine($"[AVERTISSEMENT] ID Reel {idReel} hors limite pour tileset {tileset.image}");
+                                //Console.WriteLine($"[AVERTISSEMENT] ID Reel {idReel} hors limite pour tileset {tileset.image}");
                             }
                         }
                         else
                         {
-                            Console.WriteLine($"[AVERTISSEMENT] Tuile inconnue : ID {idTuile}, position ({x},{y}) dans layer {layer.name}");
+                            //Console.WriteLine($"[AVERTISSEMENT] Tuile inconnue : ID {idTuile}, position ({x},{y}) dans layer {layer.name}");
                         }
                     }
                 }

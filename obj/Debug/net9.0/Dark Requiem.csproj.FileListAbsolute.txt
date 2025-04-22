@@ -1,3 +1,49 @@
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.csproj.AssemblyReference.cache
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.GeneratedMSBuildEditorConfig.editorconfig
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.AssemblyInfoInputs.cache
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.AssemblyInfo.cs
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.csproj.CoreCompileInputs.cache
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.sourcelink.json
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_GameOver.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_Menu.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_Paused.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_Settings.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\slider.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Autres\Character_Idle.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Autres\character_lose.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Autres\Character_Run.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Autres\hero1.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Character_Idle.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Character_Run.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Character_sword.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Effect_Arrow.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\npc\monster.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\chest_closed.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\chest_open.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\FG_Treasure_2.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\FG_Treasure_Big.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\objects.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\RA_Item_Icons01.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\exterior\Forest\Tilesets\FD_Animated_Lava.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\exterior\Forest\Tilesets\FD_Animated_Water.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\exterior\Forest\Tilesets\FD_Forest.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\exterior\Forest\Tilesets\FD_Forest_Animations.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\exterior\Forest\Tilesets\FD_Ground_Tiles.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\interior\FD_Dungeon.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\rules\Rules.aseprite
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\rules\Rules.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\ui\Hearts_Red_1.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\ui\Hearts_Red_2.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\ui\Hearts_Red_3.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\ui\Hearts_Red_4.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\ui\Hearts_Red_5.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\maps\forest.json
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\maps\forest.tmx
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\music\Forest_Loop.ogg
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\music\Menu.ogg
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\sfx\Footsteps_Grass_01.wav
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\sfx\SlashObstacleForest.wav
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\sfx\Sword.wav
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\Dark Requiem.exe
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\Dark Requiem.deps.json
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\Dark Requiem.runtimeconfig.json
@@ -9,54 +55,14 @@ F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\runtimes\osx-arm64
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\runtimes\osx-x64\native\libraylib.dylib
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\runtimes\win-x64\native\raylib.dll
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\runtimes\win-x86\native\raylib.dll
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.csproj.AssemblyReference.cache
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.GeneratedMSBuildEditorConfig.editorconfig
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.AssemblyInfoInputs.cache
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.AssemblyInfo.cs
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.csproj.CoreCompileInputs.cache
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.sourcelink.json
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Req.C8A560BB.Up2Date
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.dll
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\refint\Dark Requiem.dll
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.pdb
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\Dark Requiem.genruntimeconfig.cache
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\obj\Debug\net9.0\ref\Dark Requiem.dll
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Character_Idle.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Character_Run.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Effect_Arrow.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\FG_Treasure_2.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\FG_Treasure_Big.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\Rules\Rules.aseprite
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\Rules\Rules.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\exterior\Forest\Tilesets\FD_Animated_Lava.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\exterior\Forest\Tilesets\FD_Animated_Water.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\exterior\Forest\Tilesets\FD_Forest.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\exterior\Forest\Tilesets\FD_Forest_Animations.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\exterior\Forest\Tilesets\FD_Ground_Tiles.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\maps\forest.json
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\npc\monster.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Autres\Character_Idle.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Autres\character_lose.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Autres\Character_Run.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\Ui\Hearts_Red_1.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\Ui\Hearts_Red_2.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\Ui\Hearts_Red_3.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\Ui\Hearts_Red_4.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\Ui\Hearts_Red_5.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\objects.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\RA_Item_Icons01.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Autres\hero1.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\characters\Character_sword.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\music\Forest_Loop.ogg
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\sfx\Footsteps_Grass_01.wav
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\sfx\SlashObstacleForest.wav
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\sfx\Sword.wav
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\music\Menu.ogg
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_Menu.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_GameOver.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_Paused.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_Settings.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\slider.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\chest_closed.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\objects\chest_open.png
-F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\tilesets\interior\FD_Dungeon.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\maps\Dungeon.json
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\maps\cave.tmx
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\maps\test.json
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\maps\test.tmx
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_end.png

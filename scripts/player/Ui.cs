@@ -71,8 +71,8 @@ namespace DarkRequiem.player
                 DrawTextureEx(textureCoeur, new Vector2(10 + x, 10), 0f, scale, Color.White);
                 x += (int)(textureCoeur.Width * scale);
 
-                DrawText("Argent : " + player.Inventory.Gold, 10, 50, 20, Color.White);
-                DrawText("Potion : " + player.Inventory.Potions, 10, 70, 20, Color.White);
+                // DrawText("Argent : " + player.Inventory.GetItemQuantity("gold"), 10, 50, 20, Color.White);
+                // DrawText("Potion : " + player.Inventory.GetItemQuantity("potion"), 10, 70, 20, Color.White);
 
             }
         }

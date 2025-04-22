@@ -1,6 +1,9 @@
 using DarkRequiem.map;
 using DarkRequiem.npc;
 using DarkRequiem.player;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DarkRequiem.manager
 {
@@ -8,7 +11,7 @@ namespace DarkRequiem.manager
     {
         public static void UpdateBehavior(Npc npc, Player player, MapInfo map, List<Npc> allNpcs)
         {
-            //Analyse de la distance Joueur -> Monstres
+            //Analyse de la distance Joueur->Monstres
             int distanceToPlayer = Math.Abs(npc.Colonne - player.colonne) + Math.Abs(npc.Ligne - player.ligne);
 
             if (distanceToPlayer == 1) //Si l'ia est à coté du joueur, il l'attaque
@@ -30,9 +33,9 @@ namespace DarkRequiem.manager
 
             if (path.Count > 1)
             {
-                var nextMove = path[1]; // path[0] est la position actuelle du NPC
+                var nextMove = path[1]; //path[0] est la position actuelle du NPC
 
-                // Vérifie explicitement que la position suivante est valide (Movable=2 et aucun NPC)
+                //  Vérifie explicitement que la position suivante est valide(Movable= 2 et aucun NPC)
                 if (EstPositionValide(nextMove.X, nextMove.Y, map, allNpcs))
                 {
                     npc.Colonne = nextMove.X;
@@ -73,9 +76,9 @@ namespace DarkRequiem.manager
 
         private static void Attack(Npc npc, Player player)
         {
-            Console.WriteLine($"{npc.Name} attaque {player.Name} !");
+            //Console.WriteLine($"{npc.Name} attaque {player.Name} !");
             player.TakeDamage(npc.DealDamage());
-            Console.WriteLine($"{player.Name} a maintenant {player.Hp}/{player.MaxHp} HP.");
+            //Console.WriteLine($"{player.Name} a maintenant {player.Hp}{player.MaxHp} HP.");
         }
 
         private static bool EstPositionValide(int col, int lig, MapInfo map, List<Npc> allNpcs)

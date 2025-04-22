@@ -3,7 +3,8 @@ using static Raylib_cs.Raylib;
 using DarkRequiem.npc;
 using DarkRequiem.map;
 using DarkRequiem.manager;
-
+using System;
+using System.Collections.Generic;
 namespace DarkRequiem.interact
 {
 
@@ -12,7 +13,7 @@ namespace DarkRequiem.interact
         public int IdDialog { get; private set; }
         public string? Dialog { get; private set; }
         public string NpcName { get; private set; }
-        public static string? CurrentDialog = null; //  Stocke le texte affiché
+        public static string? CurrentDialog = null; //Stocke le texte affiché
         public static int DialogX = 0;
         public static int DialogY = 0;
 
@@ -28,9 +29,8 @@ namespace DarkRequiem.interact
         public static Dictionary<int, InteractNpc> DialogDictionary = new Dictionary<int, InteractNpc>
         {
 
-                 { 1, new InteractNpc(1, "King","Hello warrior ! Go kill the evil guy")},
-                 { 2, new InteractNpc(2, "Guard","Go to basement")},
-                 { 3, new InteractNpc(3, "Test", "Test")}
+                 { 1, new InteractNpc(1, "Guard","1,3,2")}
+
         };
         //Fonction pour Initialiser le dialogue quand on est en état de collision avec un Npc
         public static string? InitTalk(Npc collidedNpc)
@@ -41,25 +41,25 @@ namespace DarkRequiem.interact
 
                 if (interactNpc.NpcName == collidedNpc.Name)
                 {
-                    // 🔥 Stocke le dialogue dans CurrentDialog pour l'afficher chaque frame
+                    //Stocke le dialogue dans CurrentDialog pour l'afficher chaque frame
                     CurrentDialog = interactNpc.Dialog;
-                    DialogX = collidedNpc.Colonne * 16; // Convertir en pixels
-                    DialogY = (collidedNpc.Ligne - 1) * 16; // Dessiner au-dessus du PNJ
+                    DialogX = collidedNpc.Colonne * 16;// Convertir en pixels
+                    DialogY = (collidedNpc.Ligne - 1) * 16;// Dessiner au-dessus du PNJ
 
                     return CurrentDialog;
                 }
             }
-            return null; // Retourne null si aucun dialogue n'est trouvé
+            return null; //Retourne null si aucun dialogue n'est trouvé
         }
-        //Fonction pour appelé un message au dessus de la tête du npc. 
+        //Fonction pour appelé un message au dessus de la tête du npc.
         public static void ShowTalk()
         {
             if (!string.IsNullOrEmpty(CurrentDialog))
             {
                 int textHeight = 4;
-                int textWidth = MeasureText(CurrentDialog, textHeight); // Calculer la largeur du texte
+                int textWidth = MeasureText(CurrentDialog, textHeight); //Calculer la largeur du texte
 
-                // 🔥 Affiche le texte à chaque frame
+                // Affiche le texte à chaque frame
                 DrawText(CurrentDialog, DialogX - textWidth / 2, DialogY, textHeight, Color.White);
             }
         }
@@ -75,7 +75,7 @@ namespace DarkRequiem.interact
         public int OriginColonne { get; private set; }
         public string OriginMap { get; private set; }
         public string TargetMap { get; private set; }
-        public InteractDoor(int pIdInteractDoor, int pOriginLigne, int pOriginColonne, string pOriginMap, int pTargetColonne, int pTargetLigne, string pTargetMap)
+        public InteractDoor(int pIdInteractDoor, int pOriginColonne, int pOriginLigne, string pOriginMap, int pTargetColonne, int pTargetLigne, string pTargetMap)
         {
             IdDoor = pIdInteractDoor;
             OriginLigne = pOriginLigne;
@@ -88,9 +88,11 @@ namespace DarkRequiem.interact
         public static Dictionary<int, InteractDoor> GetDoorDictionary = new Dictionary<int, InteractDoor>
         {
 
-                 { 1, new InteractDoor(1, 39, 12, "map_village", 7, 12, "map_village_basement")} //Porte dans défini dans "village" qui amene au sous sol
+             { 1, new InteractDoor(1, 25, 38, "forest", 40, 65, "dungeon")}, //Porte dans défini dans "forest" qui amene au donjon
+             { 2, new InteractDoor(2, 40, 65, "dungeon", 25, 38, "forest")}, //Porte dans défini dans "dungeon" qui ramene à la foret
+          //  { 3, new InteractDoor(3, 40, 6, "forest", 39, 15, "dungeon")} //debug tp
+   
 
-        
         };
     }
 
@@ -121,7 +123,7 @@ namespace DarkRequiem.interact
         {
 
             map.SetTuileToZero(col, ligne, "Breakable");
-            Console.WriteLine("Objet cassé !");
+            //Console.WriteLine("Objet cassé !");
 
             Random rand = new Random();
             int roll = rand.Next(0, 100);
@@ -143,7 +145,7 @@ namespace DarkRequiem.interact
             }
             else
             {
-                Console.WriteLine("Rien trouvé.");
+                //Console.WriteLine("Rien trouvé.");
             }
         }
     }

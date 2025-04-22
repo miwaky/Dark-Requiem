@@ -14,11 +14,11 @@ namespace DarkRequiem.controller
             // =============== NPC COLLISION ===============
             if (npcSurNouvelleCase != null)
             {
-                Console.WriteLine($"Collision avec {npcSurNouvelleCase.Name} ({npcSurNouvelleCase.Type}) en ({npcSurNouvelleCase.Colonne}, {npcSurNouvelleCase.Ligne})");
+                //Console.WriteLine($"Collision avec {npcSurNouvelleCase.Name} ({npcSurNouvelleCase.Type}) en ({npcSurNouvelleCase.Colonne}, {npcSurNouvelleCase.Ligne})");
 
                 if (npcSurNouvelleCase.Type == "ennemy")
                 {
-                    Console.WriteLine("Attack");
+                    //Console.WriteLine("Attack");
                     AudioManager.Play("attack");
 
                     Battle.Attack(player, npcSurNouvelleCase);
@@ -42,7 +42,7 @@ namespace DarkRequiem.controller
 
             if (breakableTile != 0)
             {
-                Console.WriteLine($"Collision avec une tuile cassable en ({nouvelleCol}, {nouvelleLig})");
+                //Console.WriteLine($"Collision avec une tuile cassable en ({nouvelleCol}, {nouvelleLig})");
                 AudioManager.Play("attack");
 
                 player.StartAttack(input.CurrentDirection);
@@ -68,11 +68,11 @@ namespace DarkRequiem.controller
 
                 if (objetRamassable is Potion potion)
                 {
-                    Potion.AddPotion(ref player, 1);
+                    InventoryHelper.AddPotion(ref player, 1);
                 }
                 else if (objetRamassable is Money money)
                 {
-                    Money.AddMoney(ref player, money.moneyAdded);
+                    InventoryHelper.AddMoney(ref player, money.moneyAdded);
                 }
                 GameManager.ActiveObjects.Remove(objetRamassable);
                 return true; // Le joueur peut continuer son tour
@@ -110,7 +110,7 @@ namespace DarkRequiem.controller
             // On bloque la case uniquement s'il n'y a pas de switch scripté sur cette tuile
             if ((switchObstacle > 0 || Switch > 0 || SwitchActivated > 0) && triggeredSwitch == null)
             {
-                Console.WriteLine($"[COLLISION] Le joueur est bloqué par une tuile d'obstacle switch à ({nouvelleCol}, {nouvelleLig})");
+                //Console.WriteLine($"[COLLISION] Le joueur est bloqué par une tuile d'obstacle switch à ({nouvelleCol}, {nouvelleLig})");
                 return false;
             }
             // =============== Aucune collision ===============

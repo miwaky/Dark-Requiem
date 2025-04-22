@@ -18,9 +18,5 @@ public class Money : Objects
         return new Money(2, "Gold", "money", 3, 5, colonne, ligne);
     }
 
-    public static void AddMoney(ref Player player, int pMoney)
-    {
-        player.Inventory.AddGold(pMoney);
-        Console.WriteLine($"+{pMoney} or → total : {player.Inventory.Gold}");
-    }
+
 }

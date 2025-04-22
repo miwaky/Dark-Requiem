@@ -31,17 +31,45 @@ namespace DarkRequiem.npc
 {
     { "slime", new NpcStats(1, 1, 1, 0, "monster", 3) },
     { "mushroom", new NpcStats(2, 2, 2, 1, "monster", 5) },
+    { "bat", new NpcStats(2, 2, 1, 1, "monster", 5) },
 
 };
-        //Dictionnaire des sprites (ID) des monstres : 
-        //0 : Slime 
-        //20 : Mushroom
+
         public static Dictionary<int, string> TypeParSpriteID = new()
 {
     { 0, "slime" },
     { 20, "mushroom" },
-
+    { 40, "bat" },
 };
+
+        public static Npc CreateNpcFromType(string type, int id, int colonne, int ligne, string mapName)
+        {
+            if (!StatsParType.TryGetValue(type, out var stats))
+            {
+                //Console.WriteLine($"[ERROR] Type NPC inconnu : {type}");
+                throw new Exception("Type NPC non reconnu");
+            }
+
+            int spriteId = TypeParSpriteID.FirstOrDefault(kv => kv.Value == type).Key;
+
+            return new Npc(
+                id,
+                spriteId,
+                type,
+                "ennemy",
+                stats.MaxHp,
+                stats.Hp,
+                stats.Attack,
+                stats.Defense,
+                stats.TextureType,
+                stats.AggroRange
+            )
+            {
+                Colonne = colonne,
+                Ligne = ligne,
+                MapName = mapName
+            };
+        }
     }
 
     public class NpcStats

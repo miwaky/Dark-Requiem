@@ -2,7 +2,7 @@ using Raylib_cs;
 using static Raylib_cs.Raylib;
 using System.Numerics;
 using DarkRequiem.npc;
-using DarkRequiem.map;
+using DarkRequiem.objects;
 using DarkRequiem.manager;
 
 namespace DarkRequiem.player
@@ -41,9 +41,12 @@ namespace DarkRequiem.player
         public bool IsAttacking => State == PlayerState.Attack;
 
         public Player(string name, string type, int maxHp, int hp, int attack, int defense, int money, int nbrPotion, int startCol, int startLigne)
-            : base(name, type, maxHp, hp, attack, defense)
+      : base(name, type, maxHp, hp, attack, defense)
         {
-            Inventory = new Inventory(money, nbrPotion);
+            Inventory = new Inventory();
+            Inventory.AddItem("gold", "currency", money);
+            Inventory.AddItem("potion", "consumable", nbrPotion);
+
             colonne = startCol;
             ligne = startLigne;
             TextureIdle = LoadTexture("assets/images/characters/Character_Idle.png");
@@ -60,7 +63,7 @@ namespace DarkRequiem.player
 
         public static Player GeneratePlayer(int colonne, int ligne)
         {
-            return new Player("Hero", "Player", 12, 12, 2, 0, 0, 0, colonne, ligne);
+            return new Player("Hero", "Player", 50, 50, 20, 0, 0, 0, colonne, ligne);
         }
 
         public void StartAttack(Direction direction)

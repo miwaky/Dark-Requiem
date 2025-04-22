@@ -2,15 +2,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch",
+            "name": ".NET Launch",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/net9.0/Dark Requiem.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
-            "stopAtEntry": false
+            "stopAtEntry": false,
+            "console": "internalConsole"
         }
     ]
 }

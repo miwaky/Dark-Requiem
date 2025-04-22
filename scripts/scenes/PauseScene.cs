@@ -59,9 +59,9 @@ namespace DarkRequiem.scenes
 
             DrawRectangleRec(quitButton, new Color(50, 50, 50, 128));
 
-            Vector2 mouse = GetMousePosition();
-            string mouseText = $"Souris : {mouse.X:0}, {mouse.Y:0}";
-            DrawText(mouseText, 10, 10, 20, Color.Yellow);
+            // Vector2 mouse = GetMousePosition();
+            // string mouseText = $"Souris : {mouse.X:0}, {mouse.Y:0}";
+            // DrawText(mouseText, 10, 10, 20, Color.Yellow);
 
             EndDrawing();
         }

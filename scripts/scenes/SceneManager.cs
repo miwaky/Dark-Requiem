@@ -10,7 +10,10 @@ namespace DarkRequiem.manager
         {
             currentScene = newScene;
         }
-
+        public static CameraManager GetCameraManager()
+        {
+            return (currentScene as GameplayScene)?.CameraManager!;
+        }
         public static void Update()
         {
             currentScene?.Update();

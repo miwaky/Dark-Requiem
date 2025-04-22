@@ -20,12 +20,12 @@ public static class AudioManager
     public static void LoadAll()
     {
         InitAudioDevice();
-        sounds["attack"] = LoadSound("assets/sound/sfx/Sword.wav");
-        sounds["walk"] = LoadSound("assets/sound/sfx/Footsteps_grass_01.wav");
-        sounds["slash"] = LoadSound("assets/sound/sfx/SlashObstacleForest.wav");
+        sounds["attack"] = LoadSound("assetssoundsfxSword.wav");
+        sounds["walk"] = LoadSound("assetssoundsfxFootsteps_grass_01.wav");
+        sounds["slash"] = LoadSound("assetssoundsfxSlashObstacleForest.wav");
 
-        musics["forest"] = LoadMusicStream("assets/sound/music/Forest_Loop.ogg");
-        musics["menu"] = LoadMusicStream("assets/sound/music/Menu.ogg");
+        musics["forest"] = LoadMusicStream("assetssoundmusicForest_Loop.ogg");
+        musics["menu"] = LoadMusicStream("assetssoundmusicMenu.ogg");
     }
 
     public static void Play(string key)
@@ -38,7 +38,7 @@ public static class AudioManager
         }
         else
         {
-            Console.WriteLine($"[Audio] Le son \"{key}\" est introuvable !");
+            //Console.WriteLine($"[Audio] Le son \"{key}\" est introuvable !");
         }
     }
 
@@ -46,7 +46,7 @@ public static class AudioManager
     {
         if (!musics.ContainsKey(key))
         {
-            Console.WriteLine($"[Audio] Musique \"{key}\" introuvable !");
+            //Console.WriteLine($"[Audio] Musique \"{key}\" introuvable !");
             return;
         }
 

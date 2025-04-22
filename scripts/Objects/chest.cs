@@ -13,6 +13,8 @@ namespace DarkRequiem.objects
         public bool IsOpened { get; private set; } = false;
         public Objects Contenu { get; private set; }
 
+        public IEventCommand? OnOpenEvent { get; set; }
+
         public Chest(int id, int col, int lig, string mapName, Objects contenu)
         {
             Id = id;
@@ -26,18 +28,18 @@ namespace DarkRequiem.objects
         {
             if (IsOpened) return;
 
-            Console.WriteLine($"Coffre ouvert ! Contenu : {Contenu.name}");
             AudioManager.Play("open");
 
-            if (Contenu is Potion potion)
-                Potion.AddPotion(ref player, 1);
+
+            if (Contenu is Potion)
+                player.Inventory.AddItem("potion", "consumable", 1);
             else if (Contenu is Money money)
-                Money.AddMoney(ref player, money.moneyAdded);
-            else if (Contenu is QuestObject questItem)
-            {
-                player.Inventory.AddQuestItem(questItem);
-            }
+                player.Inventory.AddItem("gold", "currency", money.moneyAdded);
+            else if (Contenu is QuestObject quest)
+                player.Inventory.AddItem(quest.Id, "quest", 1);
+
             IsOpened = true;
+            OnOpenEvent?.Execute();
         }
 
         public static Texture2D TextureClosed;

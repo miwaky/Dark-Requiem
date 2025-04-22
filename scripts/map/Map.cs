@@ -87,12 +87,12 @@ namespace DarkRequiem.map
                 // Charger les monstres
                 LoadMonster(donneesMap);
 
-                Console.WriteLine($" Carte {NomCarte} chargée avec succès !");
+                //Console.WriteLine($" Carte {NomCarte} chargée avec succès !");
 
             }
             catch (Exception e)
             {
-                Console.WriteLine($" Erreur lors du chargement de la carte : {e.Message}");
+                //Console.WriteLine($" Erreur lors du chargement de la carte : {e.Message}");
                 return;
             }
         }
@@ -116,7 +116,7 @@ namespace DarkRequiem.map
                         int ligne = i / Largeur;
                         int spriteID = tileValue - firstGid;
 
-                        Console.WriteLine($"tileValue: {tileValue}, firstGid: {firstGid}, spriteID: {spriteID}");
+                        //Console.WriteLine($"tileValue: {tileValue}, firstGid: {firstGid}, spriteID: {spriteID}");
 
 
                         string type = NpcData.TypeParSpriteID.ContainsKey(spriteID)
@@ -140,7 +140,7 @@ namespace DarkRequiem.map
                             TextureType = stats.TextureType
                         });
 
-                        Console.WriteLine($"[NPC] tileValue={tileValue}, spriteID={spriteID}, type={type}");
+                        //Console.WriteLine($"[NPC] tileValue={tileValue}, spriteID={spriteID}, type={type}");
 
                     }
                 }
@@ -164,7 +164,8 @@ namespace DarkRequiem.map
             Layer? layer = Calques.Find(layer => layer.name == nomLayer);
             if (layer == null)
             {
-                throw new KeyNotFoundException($"Le calque {nomLayer} n'existe pas !");
+                return 0;
+                // throw new KeyNotFoundException($"Le calque {nomLayer} n'existe pas !");
             }
 
             if (colonne < 0 || colonne >= Largeur || ligne < 0 || ligne >= Hauteur)

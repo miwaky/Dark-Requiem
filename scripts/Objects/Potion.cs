@@ -12,11 +12,7 @@ public class Potion : Objects
         ligne = pLigne;
         heal = pHeal;
     }
-    public static void AddPotion(ref Player player, int amount = 1)
-    {
-        player.Inventory.AddPotion(amount);
-        Console.WriteLine($"Potion ajoutée ! Total : {player.Inventory.Potions}");
-    }
+
     public static Potion GenerateHeal(int colonne, int ligne)
     {
         return new Potion(1, "Potion", "potion", 4, 4, colonne, ligne);
@@ -29,7 +25,7 @@ public class Potion : Objects
 
         if (currentHp == maxHp)
         {
-            Console.WriteLine("La vie est déjà au maximum !");
+            //Console.WriteLine("La vie est déjà au maximum !");
             return currentHp;
         }
 
@@ -41,7 +37,7 @@ public class Potion : Objects
         }
 
         player.Hp = currentHp;
-        Console.WriteLine($"Le joueur récupère {pPdvHeal} PV ! PV actuels : {player.Hp}/{player.MaxHp}");
+        //Console.WriteLine($"Le joueur récupère {pPdvHeal} PV ! PV actuels : {player.Hp}/{player.MaxHp}");
 
         return player.Hp;
     }

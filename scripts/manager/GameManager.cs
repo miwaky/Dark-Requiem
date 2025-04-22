@@ -4,6 +4,11 @@ using DarkRequiem.interact;
 using DarkRequiem.player;
 using DarkRequiem.objects;
 using DarkRequiem.events;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+
 namespace DarkRequiem.manager
 {
     class GameManager
@@ -15,7 +20,14 @@ namespace DarkRequiem.manager
         public static List<Npc> PendingKills = new();
         public static List<Chest> ActiveChests = new();
         public static List<Switch> ActiveSwitches = new();
+        public static List<(IEventCommand waitCmd, IEventCommand onComplete)> PendingEventCommands = new();
+        public static List<Action<float>> PendingTickActions = new();
+        public static Player CurrentPlayer { get; set; }
 
+        public static Player GetPlayer()
+        {
+            return CurrentPlayer;
+        }
         public static void InitializeNewScene()
         {
             ActiveNpcs.Clear();
@@ -34,12 +46,12 @@ namespace DarkRequiem.manager
 
             if (currentMap == null)
             {
-                Console.WriteLine("currentMap == null");
+                //Console.WriteLine("currentMap == null");
                 return;
             }
 
 
-            InitializeNewScene(); // Nettoie la liste avant de charger
+            InitializeNewScene(); //Nettoie la liste avant de charger
 
             // Chargement des NPCs
             foreach (var ennemy in currentMap.Ennemies)
@@ -67,19 +79,22 @@ namespace DarkRequiem.manager
             // Chargement des portes interactives
             foreach (var doorEntry in InteractDoor.GetDoorDictionary)
             {
+
                 InteractDoor interactDoor = doorEntry.Value;
-                if (interactDoor.OriginMap == currentMap.NomCarte)
+                if (interactDoor.OriginMap.ToLower() == currentMap.NomCarte.ToLower())
                 {
                     CreateNewDoor(
                         interactDoor.IdDoor,
-                        interactDoor.OriginLigne,
                         interactDoor.OriginColonne,
+                        interactDoor.OriginLigne,
                         interactDoor.OriginMap,
-                        interactDoor.TargetLigne,
                         interactDoor.TargetColonne,
+                        interactDoor.TargetLigne,
                         interactDoor.TargetMap
                     );
                 }
+                //Console.WriteLine($"[DOOR LOAD] Porte ID {interactDoor.IdDoor} détectée sur {interactDoor.OriginMap} en ({interactDoor.OriginColonne},{interactDoor.OriginLigne})");
+
             }
 
 
@@ -92,7 +107,7 @@ namespace DarkRequiem.manager
             if (npcToRemove != null)
             {
                 ActiveNpcs.Remove(npcToRemove);
-                Console.WriteLine($"NPC {npcToRemove.Name} (ID: {npcToRemove.Id}) sur {npcToRemove.MapName} a été retiré du jeu.");
+                //Console.WriteLine($"NPC {npcToRemove.Name} (ID: {npcToRemove.Id}) sur {npcToRemove.MapName} a été retiré du jeu.");
             }
         }
 
@@ -104,7 +119,7 @@ namespace DarkRequiem.manager
             {
                 if (!JsonManager.LoadedMaps.ContainsKey(originMap.ToLower()))
                 {
-                    Console.WriteLine($"Erreur : Carte '{originMap}' introuvable !");
+                    //Console.WriteLine($"Erreur : Carte '{originMap}' introuvable !");
                     return;
                 }
 
@@ -120,13 +135,13 @@ namespace DarkRequiem.manager
                 );
 
                 ActiveDoors.Add(newDoor);
-                Console.WriteLine($"Une porte ID {idDoor} a été ajoutée sur {originMap} en ({originColonne}, {originLigne}) !");
-                Console.WriteLine($"Elle mène à {targetMap} en ({targetColonne}, {targetLigne}) !");
-                Console.WriteLine($"Portes actives : {ActiveDoors.Count}");
+                //Console.WriteLine($"Une porte ID {idDoor} a été ajoutée sur {originMap} en ({originColonne}, {originLigne}) !");
+                //Console.WriteLine($"Elle mène à {targetMap} en ({targetColonne}, {targetLigne}) !");
+                //Console.WriteLine($"Portes actives : {ActiveDoors.Count}");
             }
             else
             {
-                Console.WriteLine($"Erreur : ID {idDoor} inconnu, impossible de créer la porte !");
+                //Console.WriteLine($"Erreur : ID {idDoor} inconnu, impossible de créer la porte !");
             }
         }
         public static void ExecuteNpcTurn(Player player, MapInfo map)
