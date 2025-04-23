@@ -14,25 +14,25 @@ namespace DarkRequiem.objects
 
         public static QuestObject TutoKey()
         {
-            return new QuestObject("Little Sphere", "Clé du Tutoriel");
+            return new QuestObject("Little Sphere", "Sphere");
         }
         public static QuestObject BossKey()
         {
-            return new QuestObject("Boss Key", "Clé du Tutoriel");
+            return new QuestObject("Boss Key", "Big Key");
         }
         public static QuestObject DungeonKey()
         {
-            return new QuestObject("strange sphere", "Clé du Donjon");
+            return new QuestObject("strange sphere", "Strange Sphere");
         }
 
         public static QuestObject Sphere()
         {
-            return new QuestObject("Sphere", "Sphère Verte");
+            return new QuestObject("Sphere", "Green Sphere");
         }
 
         public static QuestObject Key()
         {
-            return new QuestObject("key", "Clé Mystérieuse");
+            return new QuestObject("key", "Key");
         }
     }
 }

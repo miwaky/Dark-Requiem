@@ -90,7 +90,7 @@ namespace DarkRequiem.interact
 
              { 1, new InteractDoor(1, 25, 38, "forest", 40, 65, "dungeon")}, //Porte dans défini dans "forest" qui amene au donjon
              { 2, new InteractDoor(2, 40, 65, "dungeon", 25, 38, "forest")}, //Porte dans défini dans "dungeon" qui ramene à la foret
-          //  { 3, new InteractDoor(3, 40, 6, "forest", 39, 15, "dungeon")} //debug tp
+          // { 3, new InteractDoor(3, 40, 6, "forest", 39, 15, "dungeon")} //debug tp
    
 
         };

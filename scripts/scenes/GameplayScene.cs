@@ -70,7 +70,7 @@ namespace DarkRequiem.scene
                 return;
             }
 
-            if (IsKeyPressed(KeyboardKey.E))
+            if (IsKeyPressed(KeyboardKey.Escape))
             {
                 SceneManager.SetScene(new PauseScene(this));
                 return;
@@ -89,15 +89,16 @@ namespace DarkRequiem.scene
                 if (currentEventMap == "forest")
                     ForestEvent.InitEvents(heros, map);
                 else if (currentEventMap == "dungeon")
-                    DungeonEvent.InitEvents(heros, map);
+                    AudioManager.PlayMusic("temple");
+                DungeonEvent.InitEvents(heros, map);
             }
-
+            NotificationManager.Update(deltaTime);
             playerInput.Movement();
-
             bool isMoving = Vector2.Distance(heros.PositionPixel, heros.TargetPositionPixel) > 1f;
             heros.UpdateAnimation(deltaTime, isMoving, playerInput.CurrentDirection);
 
-            playerInput.Action();
+            playerInput.HealAction();
+            playerInput.WaitAction();
             cameraManager.UpdateZoneCamera(heros.colonne, heros.ligne, deltaTime);
             heros.UpdatePositionSmooth(deltaTime);
 
@@ -109,7 +110,7 @@ namespace DarkRequiem.scene
                 {
                     WaitUntilNpcKilledCommand npcKilled => npcKilled.IsCompleted,
                     CheckBothChestsOpenedCommand chestsOpened => chestsOpened.IsCompleted,
-                    _ => false // autres commandes éventuelles
+                    _ => false
                 };
 
                 if (completed)
@@ -123,7 +124,6 @@ namespace DarkRequiem.scene
             {
                 tick(deltaTime);
             }
-
         }
 
         public void Draw()
@@ -146,7 +146,7 @@ namespace DarkRequiem.scene
             {
                 DrawRectangle(50, 50, 300, 400, new Color(0, 0, 0, 200));
                 DrawRectangleLines(50, 50, 300, 400, Color.White);
-                DrawText("INVENTAIRE", 60, 60, 20, Color.White);
+                DrawText("INVENTORY", 60, 60, 20, Color.White);
 
                 var items = heros.Inventory.GetAllItems();
                 int y = 90;
@@ -156,9 +156,10 @@ namespace DarkRequiem.scene
                     y += 25;
                 }
 
-                DrawText("[Tab] Fermer", 60, 430, 16, Color.Gray);
+                DrawText("[Tab] CLOSE", 60, 430, 16, Color.Gray);
             }
             playerInput.DrawDebug();
+            NotificationManager.Draw();
 
             EndDrawing();
         }

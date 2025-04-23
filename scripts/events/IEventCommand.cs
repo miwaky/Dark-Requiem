@@ -185,14 +185,24 @@ namespace DarkRequiem.events
         private readonly Player player;
         private readonly Func<Player, bool> condition;
         private readonly IEventCommand command;
+        private readonly string? itemToRemove;
+        private readonly int amountToRemove;
 
-        public bool WasExecuted { get; private set; } = false; // ✅
+        public bool WasExecuted { get; private set; } = false;
 
-        public RequireItemCommand(Player player, Func<Player, bool> condition, IEventCommand command)
+        public RequireItemCommand(
+            Player player,
+            Func<Player, bool> condition,
+            IEventCommand command,
+            string? itemToRemove = null,
+            int amountToRemove = 1
+        )
         {
             this.player = player;
             this.condition = condition;
             this.command = command;
+            this.itemToRemove = itemToRemove;
+            this.amountToRemove = amountToRemove;
         }
 
         public void Execute()
@@ -200,8 +210,14 @@ namespace DarkRequiem.events
             if (!condition(player))
             {
                 WasExecuted = false;
-                AudioManager.Play("denied");
                 return;
+            }
+
+            // Supprime l’objet si spécifié
+            if (itemToRemove != null)
+            {
+                player.Inventory.RemoveItem(itemToRemove, amountToRemove);
+                NotificationManager.Add($"- {amountToRemove} {itemToRemove}");
             }
 
             command.Execute();
@@ -209,6 +225,7 @@ namespace DarkRequiem.events
             WasExecuted = true;
         }
     }
+
     public class RemoveZoneCommand : IEventCommand
     {
         private readonly MapInfo map;
@@ -542,11 +559,12 @@ namespace DarkRequiem.events
             {
                 Console.WriteLine("[TimerEvent] Échec. Obstacles restaurés et switch réactivé.");
 
+                //Pique
                 foreach (var (x, y) in tilesToRestore)
-                    new SpawnTileCommand(map, x, y, 2589, layer).Execute();
+                    new SpawnTileCommand(map, x, y, 2700, layer).Execute();
 
                 // Réactive le switch en remettant une tuile visible
-                const int switchTileId = 2847; // ID du sprite de switch réactivable
+                const int switchTileId = 2599; // ID du sprite de switch réactivable
                 new SpawnTileCommand(map, switchTile.x, switchTile.y, switchTileId, "Switch").Execute();
 
                 // Supprime les anciens switches pour éviter doublons

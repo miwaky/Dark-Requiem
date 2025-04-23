@@ -11,8 +11,8 @@ public static class AudioManager
     private static string? currentMusicKey;
     private static bool musicPlaying = false;
 
-    private static float musicVolume = 1f;
-    private static float sfxVolume = 1f;
+    private static float musicVolume = 0.5f;
+    private static float sfxVolume = 0.5f;
 
     public static float MusicVolume => musicVolume;
     public static float SfxVolume => sfxVolume;
@@ -20,12 +20,15 @@ public static class AudioManager
     public static void LoadAll()
     {
         InitAudioDevice();
-        sounds["attack"] = LoadSound("assetssoundsfxSword.wav");
-        sounds["walk"] = LoadSound("assetssoundsfxFootsteps_grass_01.wav");
-        sounds["slash"] = LoadSound("assetssoundsfxSlashObstacleForest.wav");
+        sounds["attack"] = LoadSound("assets/sound/sfx/Sword.wav");
+        sounds["walk"] = LoadSound("assets/sound/sfx/Footsteps_grass_01.wav");
+        sounds["slash"] = LoadSound("assets/sound/sfx/SlashObstacleForest.wav");
+        sounds["OpenChest"] = LoadSound("assets/sound/sfx/OpenChest.wav");
+        sounds["ItemAcquire"] = LoadSound("assets/sound/sfx/ItemAcquire.wav");
 
-        musics["forest"] = LoadMusicStream("assetssoundmusicForest_Loop.ogg");
-        musics["menu"] = LoadMusicStream("assetssoundmusicMenu.ogg");
+        musics["temple"] = LoadMusicStream("assets/sound/music/Temple.ogg");
+        musics["forest"] = LoadMusicStream("assets/sound/music/Forest_Loop.ogg");
+        musics["menu"] = LoadMusicStream("assets/sound/music/Menu.ogg");
     }
 
     public static void Play(string key)
@@ -38,7 +41,7 @@ public static class AudioManager
         }
         else
         {
-            //Console.WriteLine($"[Audio] Le son \"{key}\" est introuvable !");
+            Console.WriteLine($"[Audio] Le son \"{key}\" est introuvable !");
         }
     }
 
@@ -46,7 +49,7 @@ public static class AudioManager
     {
         if (!musics.ContainsKey(key))
         {
-            //Console.WriteLine($"[Audio] Musique \"{key}\" introuvable !");
+            Console.WriteLine($"[Audio] Musique \"{key}\" introuvable !");
             return;
         }
 

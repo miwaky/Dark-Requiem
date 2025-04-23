@@ -3,6 +3,7 @@ using System.Numerics;
 using static Raylib_cs.Raylib;
 using DarkRequiem.npc;
 using DarkRequiem.objects;
+using DarkRequiem.manager;
 
 namespace DarkRequiem.map
 {
@@ -189,8 +190,12 @@ namespace DarkRequiem.map
         }
         public void DrawChests(List<Chest> coffres)
         {
+            string currentMap = JsonManager.CurrentMap.NomCarte.ToLower();
+
             foreach (var chest in coffres)
             {
+                if (chest.MapName.ToLower() != currentMap) continue;
+
                 Texture2D texture = chest.IsOpened ? Chest.TextureOpen : Chest.TextureClosed;
 
                 DrawTexture(
@@ -201,6 +206,7 @@ namespace DarkRequiem.map
                 );
             }
         }
+
 
 
     }

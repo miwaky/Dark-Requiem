@@ -8,19 +8,20 @@ namespace DarkRequiem.manager
         public static void AddPotion(ref Player player, int amount = 1)
         {
             player.Inventory.AddItem("potion", "consumable", amount);
-            Console.WriteLine($"+{amount} potion(s) → Total : {player.Inventory.GetItemQuantity("potion")}");
+            NotificationManager.Add($"+{amount} Potion");
         }
 
         public static void AddMoney(ref Player player, int amount)
         {
             player.Inventory.AddItem("gold", "currency", amount);
-            Console.WriteLine($"+{amount} or → Total : {player.Inventory.GetItemQuantity("gold")}");
+            int total = player.Inventory.GetItemQuantity("gold");
+            NotificationManager.Add($"+{amount} or (Total: {total})");
         }
 
         public static void AddQuestItem(ref Player player, QuestObject quest)
         {
             player.Inventory.AddItem(quest.Id, "quest", 1);
-            Console.WriteLine($"Objet de quête '{quest.Name}' ajouté à l'inventaire.");
+            NotificationManager.Add($"Objet de quête obtenu : {quest.Name}");
         }
     }
 }

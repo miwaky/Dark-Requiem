@@ -135,7 +135,7 @@ namespace DarkRequiem.controller
                 lastMoveTime = currentTime;
             }
         }
-        public void Action()
+        public void HealAction()
         {
             if (IsKeyPressed(KeyboardKey.H))
             {
@@ -148,6 +148,14 @@ namespace DarkRequiem.controller
                 GameManager.ExecuteNpcTurn(_player, _map);
                 Collider.ResetNpcCombatIfNeeded(this);
                 collidedNpc = null;
+            }
+        }
+
+        public void WaitAction()
+        {
+            if (IsKeyPressed(KeyboardKey.Z))
+            {
+                GameManager.ExecuteNpcTurn(_player, _map);
             }
         }
 

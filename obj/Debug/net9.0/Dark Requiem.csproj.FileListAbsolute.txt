@@ -66,3 +66,7 @@ F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\maps\cave.t
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\maps\test.json
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\maps\test.tmx
 F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\images\background\Background_end.png
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\music\Temple.ogg
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\sfx\ItemAcquire.wav
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\sfx\OpenChest.wav
+F:\Users\jdebr\Documents\GitHub\Dark-Requiem\bin\Debug\net9.0\assets\sound\sfx\VasesBreaking.wav

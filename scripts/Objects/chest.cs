@@ -1,3 +1,4 @@
+using DarkRequiem.manager;
 using DarkRequiem.player;
 using Raylib_cs;
 using static Raylib_cs.Raylib;
@@ -28,17 +29,29 @@ namespace DarkRequiem.objects
         {
             if (IsOpened) return;
 
-            AudioManager.Play("open");
+            AudioManager.Play("OpenChest");
 
-
-            if (Contenu is Potion)
-                player.Inventory.AddItem("potion", "consumable", 1);
+            if (Contenu is Potion potion)
+            {
+                InventoryHelper.AddPotion(ref player, 1);
+                //NotificationManager.Add("+1 Potion !");
+                AudioManager.Play("ItemAcquire");
+            }
             else if (Contenu is Money money)
-                player.Inventory.AddItem("gold", "currency", money.moneyAdded);
+            {
+                InventoryHelper.AddMoney(ref player, money.moneyAdded);
+                //NotificationManager.Add($"+{money.moneyAdded} Or");
+                AudioManager.Play("ItemAcquire");
+            }
             else if (Contenu is QuestObject quest)
-                player.Inventory.AddItem(quest.Id, "quest", 1);
+            {
+                InventoryHelper.AddQuestItem(ref player, quest);
+                //NotificationManager.Add($"Objet obtenu : {quest.Name}");
+                AudioManager.Play("ItemAcquire");
+            }
 
             IsOpened = true;
+
             OnOpenEvent?.Execute();
         }
 

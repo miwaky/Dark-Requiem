@@ -18,11 +18,26 @@ namespace DarkRequiem.controller
 
                 if (npcSurNouvelleCase.Type == "ennemy")
                 {
-                    //Console.WriteLine("Attack");
+                    Console.WriteLine("Attack");
                     AudioManager.Play("attack");
 
+                    // Détermine la direction vers l’ennemi
+                    Player.Direction newDirection = player.CurrentDirection;
+
+                    if (player.colonne < npcSurNouvelleCase.Colonne)
+                        newDirection = Player.Direction.Right;
+                    else if (player.colonne > npcSurNouvelleCase.Colonne)
+                        newDirection = Player.Direction.Left;
+                    else if (player.ligne < npcSurNouvelleCase.Ligne)
+                        newDirection = Player.Direction.Down;
+                    else if (player.ligne > npcSurNouvelleCase.Ligne)
+                        newDirection = Player.Direction.Up;
+
+                    // Met à jour l’orientation du joueur
+                    player.StartAttack(newDirection);
+
+                    // Et applique l’attaque
                     Battle.Attack(player, npcSurNouvelleCase);
-                    player.StartAttack(input.CurrentDirection);
                 }
                 else if (npcSurNouvelleCase.Type == "allie")
                 {
@@ -42,10 +57,21 @@ namespace DarkRequiem.controller
 
             if (breakableTile != 0)
             {
-                //Console.WriteLine($"Collision avec une tuile cassable en ({nouvelleCol}, {nouvelleLig})");
                 AudioManager.Play("attack");
 
-                player.StartAttack(input.CurrentDirection);
+                // Déterminer la direction vers la tuile cassable
+                Player.Direction direction = player.CurrentDirection;
+
+                if (player.colonne < nouvelleCol)
+                    direction = Player.Direction.Right;
+                else if (player.colonne > nouvelleCol)
+                    direction = Player.Direction.Left;
+                else if (player.ligne < nouvelleLig)
+                    direction = Player.Direction.Down;
+                else if (player.ligne > nouvelleLig)
+                    direction = Player.Direction.Up;
+
+                player.StartAttack(direction);
 
                 // Détruire et loot
                 BreakableObject.HandleBreakableTile(map, nouvelleCol, nouvelleLig);

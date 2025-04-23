@@ -52,9 +52,10 @@ namespace DarkRequiem.events
 
             // La commande conditionnelle
             var requireKeyTuto = new RequireItemCommand(
-                player,
-                p => p.Inventory.HasItem("Little Sphere"),
-                SwitchTuto
+            player,
+            p => p.Inventory.HasItem("Little Sphere"),
+            SwitchTuto,
+            itemToRemove: "Little Sphere"
             );
 
             //Le switch à(41, 6)
@@ -74,10 +75,11 @@ namespace DarkRequiem.events
 
             // La commande conditionnelle
             var requireDungeonKey = new RequireItemCommand(
-                player,
-                p => p.Inventory.HasItem("strange sphere"),
-                SwitchDungeon
-            );
+     player,
+     p => p.Inventory.HasItem("strange sphere"),
+     SwitchDungeon,
+     itemToRemove: "strange sphere"
+             );
 
             // Le switch à(19, 24)
             var DungeonEnterSwitchCondition = new Switch(19, 24, "forest", requireDungeonKey);

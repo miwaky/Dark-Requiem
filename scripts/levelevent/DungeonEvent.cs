@@ -25,7 +25,7 @@ namespace DarkRequiem.events
 
         public static void InitEndGame(Player player, MapInfo map)
         {
-            var winnerChest = new Chest(999, 23, 6, "dungeon", Money.GenerateMoney(23, 6))
+            var winnerChest = new Chest(140, 23, 6, "dungeon", Money.GenerateMoney(23, 6))
             {
                 OnOpenEvent = new SwitchToWinnerSceneCommand()
             };
@@ -40,23 +40,24 @@ namespace DarkRequiem.events
         }
         public static void InitDoor1NeedKey(Player player, MapInfo map)
         {
-            var DoorSwitch = new CompositeCommand(new List<IEventCommand>
-{
-    new RemoveTileCommand(map, 40, 57, "DoorClosed"),
-   // new TeleportPlayerCommand(player, 40, 54)
-});
+            var doorCommand = new CompositeCommand(new List<IEventCommand>
+    {
+        new RemoveTileCommand(map, 40, 57, "DoorClosed"),
+        // Tu peux aussi ajouter un son ici si tu veux
+    });
 
-            var requireDungeonKey1 = new RequireItemCommand(
+            var requireKey = new RequireItemCommand(
                 player,
                 p => p.Inventory.HasItem("key"),
-                DoorSwitch
+                doorCommand,
+                itemToRemove: "key", // Supprime l'objet de l'inventaire
+                amountToRemove: 1
             );
 
-            // Activation sur la case (40,57)
-            var DungeonDoorKey1 = new Switch(40, 58, "dungeon", requireDungeonKey1);
-            GameManager.ActiveSwitches.Add(DungeonDoorKey1);
-
+            var switchKeyDoor = new Switch(40, 58, "dungeon", requireKey);
+            GameManager.ActiveSwitches.Add(switchKeyDoor);
         }
+
         public static void InitDoor2NeedKey(Player player, MapInfo map)
         {
             var DoorSwitch = new CompositeCommand(new List<IEventCommand>
@@ -275,4 +276,5 @@ namespace DarkRequiem.events
 
     }
 }
+
 

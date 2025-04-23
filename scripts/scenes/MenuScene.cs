@@ -17,7 +17,7 @@ namespace DarkRequiem.scene
         public MenuScene()
         {
             background = Raylib.LoadTexture("assets/images/background/Background_Menu.png");
-            AudioManager.PlayMusic("forest"); // ou une musique de menu si différente
+            AudioManager.PlayMusic("menu"); // ou une musique de menu si différente
         }
 
 
