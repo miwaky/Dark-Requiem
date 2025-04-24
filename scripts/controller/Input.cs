@@ -170,7 +170,7 @@ namespace DarkRequiem.controller
         public void UpdateMapReference(MapInfo newMap)
         {
             _map = newMap;
-            // Console.WriteLine($"Mise à jour de Input.cs avec la carte : {newMap.NomCarte}");
+            // //Console.WriteLine($"Mise à jour de Input.cs avec la carte : {newMap.NomCarte}");
         }
     }
 }

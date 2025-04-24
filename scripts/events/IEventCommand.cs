@@ -332,14 +332,14 @@ namespace DarkRequiem.events
             // Si déjà utilisé, on ignore (pas d’erreur)
             if (usedSwitches.Contains(targetSwitch))
             {
-                Console.WriteLine("[Puzzle] Ce switch a déjà été utilisé pour cette tentative.");
+                //Console.WriteLine("[Puzzle] Ce switch a déjà été utilisé pour cette tentative.");
                 return;
             }
 
             // Si ce n’est pas le bon dans la séquence
             if (targetSwitch != expectedOrder[currentIndex])
             {
-                Console.WriteLine("[Puzzle] Mauvais switch. Réinitialisation du puzzle.");
+                //Console.WriteLine("[Puzzle] Mauvais switch. Réinitialisation du puzzle.");
                 RestoreSwitchTiles();
                 ResetPuzzle();
                 return;
@@ -353,12 +353,12 @@ namespace DarkRequiem.events
 
             if (currentIndex == expectedOrder.Count)
             {
-                Console.WriteLine("[Puzzle] Succès du puzzle. Apparition du coffre !");
+                //Console.WriteLine("[Puzzle] Succès du puzzle. Apparition du coffre !");
                 new CreateInventoryChestCommand(131, chestLocation.col, chestLocation.row, mapName, reward).Execute();
             }
             else
             {
-                Console.WriteLine($"[Puzzle] Étape {currentIndex} sur {expectedOrder.Count} validée.");
+                //Console.WriteLine($"[Puzzle] Étape {currentIndex} sur {expectedOrder.Count} validée.");
             }
         }
 
@@ -419,13 +419,13 @@ namespace DarkRequiem.events
 
             if (matched == default)
             {
-                Console.WriteLine("[MultiSwitch] Aucun switch valide à proximité ou déjà activé.");
+                //Console.WriteLine("[MultiSwitch] Aucun switch valide à proximité ou déjà activé.");
                 return;
             }
 
             if (!player.Inventory.HasItem("Sphere", 1))
             {
-                Console.WriteLine("[MultiSwitch] Il faut une sphère pour activer ce switch.");
+                //Console.WriteLine("[MultiSwitch] Il faut une sphère pour activer ce switch.");
                 AudioManager.Play("denied");
                 return;
             }
@@ -436,11 +436,11 @@ namespace DarkRequiem.events
 
             new RemoveTileCommand(map, matched.x, matched.y, "Switch").Execute();
             AudioManager.Play("switch");
-            Console.WriteLine($"[MultiSwitch] Switch activé en {matched}. {activatedSwitches.Count}/{requiredSwitches.Count}");
+            //Console.WriteLine($"[MultiSwitch] Switch activé en {matched}. {activatedSwitches.Count}/{requiredSwitches.Count}");
 
             if (activatedSwitches.Count == requiredSwitches.Count)
             {
-                Console.WriteLine("[MultiSwitch] Tous les switches sont activés, apparition du coffre !");
+                //Console.WriteLine("[MultiSwitch] Tous les switches sont activés, apparition du coffre !");
                 new CreateInventoryChestCommand(
                     id: 200,
                     col: rewardChestPos.x,
@@ -533,7 +533,7 @@ namespace DarkRequiem.events
                     map.SetTuileToZero(x, y, layer);
 
                 isRunning = true;
-                Console.WriteLine("[TimerEvent] Début du compte à rebours !");
+                //Console.WriteLine("[TimerEvent] Début du compte à rebours !");
             }
 
             UpdateCountdown();
@@ -549,7 +549,7 @@ namespace DarkRequiem.events
 
             if (inside)
             {
-                Console.WriteLine("[TimerEvent] Objectif atteint à temps !");
+                //Console.WriteLine("[TimerEvent] Objectif atteint à temps !");
                 hasPlayerSucceeded = true;
                 IsCompleted = true;
                 return;
@@ -557,7 +557,7 @@ namespace DarkRequiem.events
 
             if (timer <= 0 && !hasPlayerSucceeded)
             {
-                Console.WriteLine("[TimerEvent] Échec. Obstacles restaurés et switch réactivé.");
+                //Console.WriteLine("[TimerEvent] Échec. Obstacles restaurés et switch réactivé.");
 
                 //Pique
                 foreach (var (x, y) in tilesToRestore)

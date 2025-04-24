@@ -41,7 +41,7 @@ public static class AudioManager
         }
         else
         {
-            Console.WriteLine($"[Audio] Le son \"{key}\" est introuvable !");
+            //Console.WriteLine($"[Audio] Le son \"{key}\" est introuvable !");
         }
     }
 
@@ -49,7 +49,7 @@ public static class AudioManager
     {
         if (!musics.ContainsKey(key))
         {
-            Console.WriteLine($"[Audio] Musique \"{key}\" introuvable !");
+            //Console.WriteLine($"[Audio] Musique \"{key}\" introuvable !");
             return;
         }
 

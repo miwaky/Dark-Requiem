@@ -127,7 +127,7 @@ namespace DarkRequiem.events
 
         public static void InitRedKey1(Player player, MapInfo map)
         {
-            Console.WriteLine("Test");
+            //Console.WriteLine("Test");
             // 1. Création des coffres secondaires à spawn plus tard
             var chest2 = new CreateInventoryChestCommand(111, 50, 40, "dungeon", Money.GenerateMoney(50, 40));
             var chest3 = new CreateInventoryChestCommand(112, 60, 40, "dungeon", Money.GenerateMoney(60, 40));

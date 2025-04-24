@@ -4,9 +4,7 @@ using DarkRequiem.interact;
 using DarkRequiem.player;
 using DarkRequiem.objects;
 using DarkRequiem.events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
 
 
 namespace DarkRequiem.manager
@@ -22,9 +20,9 @@ namespace DarkRequiem.manager
         public static List<Switch> ActiveSwitches = new();
         public static List<(IEventCommand waitCmd, IEventCommand onComplete)> PendingEventCommands = new();
         public static List<Action<float>> PendingTickActions = new();
-        public static Player CurrentPlayer { get; set; }
+        public static Player? CurrentPlayer { get; set; }
 
-        public static Player GetPlayer()
+        public static Player? GetPlayer()
         {
             return CurrentPlayer;
         }

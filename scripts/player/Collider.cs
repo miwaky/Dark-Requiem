@@ -18,7 +18,7 @@ namespace DarkRequiem.controller
 
                 if (npcSurNouvelleCase.Type == "ennemy")
                 {
-                    Console.WriteLine("Attack");
+                    //Console.WriteLine("Attack");
                     AudioManager.Play("attack");
 
                     // Détermine la direction vers l’ennemi

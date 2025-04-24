@@ -10,9 +10,11 @@ namespace DarkRequiem.scene
     {
         public string Name => "Menu";
 
-        private Rectangle startButton = new Rectangle(30, 223, 257, 56);
-        private Rectangle settingsButton = new Rectangle(30, 294, 257, 56);
-        private Rectangle quitButton = new Rectangle(30, 369, 257, 56);
+        private Rectangle startButton = new Rectangle(70, 232, 218, 55);
+        private Rectangle settingsButton = new Rectangle(70, 302, 218, 55);
+        private Rectangle quitButton = new Rectangle(70, 376, 218, 55);
+        private Rectangle controlButton = new Rectangle(549, 480, 130, 23);
+
         public Texture2D background;
         public MenuScene()
         {
@@ -40,6 +42,10 @@ namespace DarkRequiem.scene
                 {
                     SceneManager.SetScene(new SettingsScene(this));
                 }
+                else if (Raylib.CheckCollisionPointRec(mouse, controlButton))
+                {
+                    SceneManager.SetScene(new ControlScene(this));
+                }
             }
         }
 
@@ -53,11 +59,16 @@ namespace DarkRequiem.scene
             Rectangle dest = new Rectangle(0, 0, Raylib.GetScreenWidth(), Raylib.GetScreenHeight());
             Raylib.DrawTexturePro(background, source, dest, Vector2.Zero, 0f, Color.White);
 
-            Raylib.DrawRectangleRec(startButton, new Color(50, 50, 50, 128));
+            Raylib.DrawRectangleRec(startButton, new Color(50, 50, 50, 0));
 
-            Raylib.DrawRectangleRec(settingsButton, new Color(50, 50, 50, 128));
+            Raylib.DrawRectangleRec(settingsButton, new Color(50, 50, 50, 0));
 
-            Raylib.DrawRectangleRec(quitButton, new Color(50, 50, 50, 128));
+            Raylib.DrawRectangleRec(quitButton, new Color(50, 50, 50, 0));
+
+            Raylib.DrawRectangleRec(controlButton, new Color(50, 50, 50, 0));
+            // Vector2 mouse = Raylib.GetMousePosition();
+            // string mouseText = $"Souris : {mouse.X:0}, {mouse.Y:0}";
+            // Raylib.DrawText(mouseText, 10, 10, 20, Color.Yellow);
 
             Raylib.EndDrawing();
         }
