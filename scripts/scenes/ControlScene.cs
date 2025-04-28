@@ -11,7 +11,7 @@ namespace DarkRequiem.scenes
         public string Name => "Control";
         private Texture2D background;
 
-        private Rectangle MenuButton = new Rectangle(273, 435, 222, 53);
+        private Rectangle MenuButton = new Rectangle(255, 463, 258, 47);
         public ControlScene(IScene fromScene)
         {
             background = LoadTexture("assets/images/background/Background_Control.png");

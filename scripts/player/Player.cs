@@ -63,7 +63,7 @@ namespace DarkRequiem.player
 
         public static Player GeneratePlayer(int colonne, int ligne)
         {
-            return new Player("Hero", "Player", 50, 50, 20, 0, 0, 0, colonne, ligne);
+            return new Player("Hero", "Player", 16, 16, 2, 0, 0, 0, colonne, ligne);
         }
 
         public void StartAttack(Direction direction)

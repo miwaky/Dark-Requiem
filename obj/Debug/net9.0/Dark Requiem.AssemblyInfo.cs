@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Dark Requiem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f1614570b0acb64793d648c83c931306de5845f3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f92829deead2f8dc3705e8f0d7bd92c8e6f29d4d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Dark Requiem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Dark Requiem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

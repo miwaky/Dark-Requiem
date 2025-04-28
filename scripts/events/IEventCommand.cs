@@ -27,6 +27,7 @@ namespace DarkRequiem.events
     }
 
     public static class InventoryConditions
+
     {
         public static bool HasPotion(Player player, int amount = 1)
         {
